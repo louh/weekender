@@ -16,6 +16,6 @@ window.setTimeout(() => {
   L.tileLayer('./images/tiles/{z}/{x}/{y}.png', {
     attribution: false,
     maxZoom: 16,
-    minZoom: 15
+    minZoom: 14
   }).addTo(mymap)
 }, 10)
