@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Weekender</title>
+  <title>The Weekender</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.css">
 </head>
 <body>
 
@@ -31,35 +32,55 @@
         <h2>Subway Lines <span class="heading-instructions">Select one for service details</span></h2>
         
         <ul class="subway-lines">
-          <li><img src="./node_modules/nyc-subway-icons/svg/1.svg" class="subway-bullet" alt="1"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/2.svg" class="subway-bullet" alt="2"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/3.svg" class="subway-bullet" alt="3"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/4.svg" class="subway-bullet" alt="4"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/5.svg" class="subway-bullet" alt="5"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/6.svg" class="subway-bullet" alt="6"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/7.svg" class="subway-bullet" alt="7"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/a.svg" class="subway-bullet" alt="A"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/c.svg" class="subway-bullet" alt="C"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/e.svg" class="subway-bullet" alt="E"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/l.svg" class="subway-bullet" alt="L"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/s.svg" class="subway-bullet" alt="S"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/b.svg" class="subway-bullet" alt="B"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/d.svg" class="subway-bullet" alt="D"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/f.svg" class="subway-bullet" alt="F"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/m.svg" class="subway-bullet" alt="M"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/n.svg" class="subway-bullet" alt="N"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/q.svg" class="subway-bullet" alt="Q"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/r.svg" class="subway-bullet" alt="R"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/w.svg" class="subway-bullet" alt="W"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/j.svg" class="subway-bullet" alt="J"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/z.svg" class="subway-bullet" alt="Z"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/g.svg" class="subway-bullet" alt="G"></li>
-          <li><img src="./node_modules/nyc-subway-icons/svg/sir.svg" class="subway-bullet" alt="SIR"></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/1.svg" class="subway-bullet" alt="1"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/2.svg" class="subway-bullet" alt="2"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/3.svg" class="subway-bullet" alt="3"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/4.svg" class="subway-bullet" alt="4"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/5.svg" class="subway-bullet" alt="5"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/6.svg" class="subway-bullet" alt="6"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/7.svg" class="subway-bullet" alt="7"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/a.svg" class="subway-bullet" alt="A"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/c.svg" class="subway-bullet" alt="C"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/e.svg" class="subway-bullet" alt="E"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/l.svg" class="subway-bullet" alt="L"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/s.svg" class="subway-bullet" alt="S"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/b.svg" class="subway-bullet" alt="B"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/d.svg" class="subway-bullet" alt="D"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/f.svg" class="subway-bullet" alt="F"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/m.svg" class="subway-bullet" alt="M"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/n.svg" class="subway-bullet" alt="N"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/q.svg" class="subway-bullet" alt="Q"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/r.svg" class="subway-bullet" alt="R"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/w.svg" class="subway-bullet" alt="W"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/j.svg" class="subway-bullet" alt="J"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/z.svg" class="subway-bullet" alt="Z"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/g.svg" class="subway-bullet" alt="G"></a></li>
+          <li><a href=""><img src="./node_modules/nyc-subway-icons/svg/sir.svg" class="subway-bullet" alt="SIR"></a></li>
         </ul>
+
+        <div style="clear:both;"></div>
+        <hr />
+
+        <h3>DeKalb Av</h3>
+        <span><img src="./node_modules/nyc-subway-icons/svg/b.svg" class="subway-bullet-small" alt="B"></span>
+
+
+        <div class="service-notice">
+          <h3>Weekend Service Notice <span class="heading-instructions">Select one for details</span></h3>
+        
+          <ul>
+            <li><a href="">TRACK MAINTENANCE 10:45 PM Fri, Oct 12 to 5 AM Mon, Oct 15 Norwood-bound <img src="./node_modules/nyc-subway-icons/svg/d.svg" class="subway-bullet-small" alt="D"> trains skip 25 St, Prospect Av, 4 Av-9 St, Union St and DeKalb Av in Brooklyn</a></li>
+            <li><a href="">TRACK MAINTENANCE 9:30 PM Fri, Oct 12 to 5 AM Mon, Oct 15 <img src="./node_modules/nyc-subway-icons/svg/q.svg" class="subway-bullet-small" alt="Q"> Service between 96 St in Manhattan and Prospect Park in Brooklyn is replaced by  <img src="./node_modules/nyc-subway-icons/svg/m.svg" class="subway-bullet-small" alt="M"><img src="./node_modules/nyc-subway-icons/svg/n.svg" class="subway-bullet-small" alt="N"><img src="./node_modules/nyc-subway-icons/svg/r.svg" class="subway-bullet-small" alt="R"> trains and <img src="./images/aiga_bus.svg" class="subway-bullet-small" alt="[bus icon]"> free shuttle buses</a></li>
+          </ul>
+        </div>
+
 
       </div>
       <div class="map-container">
-        <img src="./images/station_view.png">
+        <div id="map"></div>
+        <div class="static-map">
+          <img src="./images/station_view.png">
+        </div>
       </div>
     </main>
     <footer>
@@ -67,7 +88,7 @@
     </footer>
   </div>
 
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.js"></script>
   <script src="./index.js"></script>
 </body>
 </html>
