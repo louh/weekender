@@ -103,6 +103,7 @@ footer {
 
 .map-container {
   background-color: #ebf0f0;
+  flex: 1;
 }
 
 #map {
