@@ -1,0 +1,15 @@
+{
+  "name": "weekender",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nyc-subway-icons": "git+https://github.com/louh/nyc-subway-icons.git",
+    "parcel-bundler": "^1.10.3"
+  }
+}
