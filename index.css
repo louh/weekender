@@ -28,6 +28,9 @@ header {
 
 .header-container {
   display: flex;
+  /* Allow h1 to occur earlier in source order but be
+     positioned to the right */
+  flex-direction: row-reverse;
 }
 
 .header-left {
@@ -36,8 +39,11 @@ header {
   padding-top: 12px;
   flex: 0 0 330px;
   font-family: Helvetica, 'Helvetica Neue', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 17px;
+  letter-spacing: -0.01em;
+  color: #999;
+  column-count: 2;
 }
 
 .header-left ul {
@@ -54,6 +60,10 @@ header {
 
 .header-left a:hover {
   color: white;
+}
+
+.header-right {
+  flex: 1;
 }
 
 h1 {
@@ -130,7 +140,7 @@ footer {
 
 .info-panel {
   font-size: 12px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 h2 {
