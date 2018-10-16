@@ -1,4 +1,7 @@
+import leafletStyles from './node_modules/leaflet/dist/leaflet.css'
 import styles from './index.css'
+
+import L from 'leaflet'
 
 // Test proxy
 window.fetch('http://35.196.121.180/mta/status/weekendboroughstatus.js')
