@@ -1,0 +1,18 @@
+footer {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-left {
+  flex: 0 0 330px;
+  padding-left: 15px;
+}
+
+.footer-middle {
+  flex: 1;
+}
+
+.footer-right {
+  text-align: right;
+  padding-right: 15px;
+}

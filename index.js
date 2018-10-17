@@ -1,7 +1,10 @@
 import leafletStyles from './node_modules/leaflet/dist/leaflet.css'
 import styles from './index.css'
 
+import React from 'react'
+import ReactDOM from 'react-dom'
 import L from 'leaflet'
+import Footer from './src/components/Footer'
 
 // Test proxy
 window.fetch('http://35.196.121.180/mta/status/weekendboroughstatus.js')
@@ -20,3 +23,8 @@ L.tileLayer('./images/tiles/{z}/{x}/{y}.png', {
   maxZoom: 16,
   minZoom: 14
 }).addTo(mymap)
+
+// Proof of concept React
+
+const mountNode = document.getElementById('react-footer')
+ReactDOM.render(<Footer />, mountNode)
