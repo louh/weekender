@@ -149,7 +149,7 @@ h3 {
   height: 14px;
 }
 
-.service-notice {
+.info-panel > section + section {
   margin-top: 1.25em;
   border-top: 1px solid black;
 }

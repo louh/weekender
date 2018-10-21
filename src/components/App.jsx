@@ -4,6 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 import SubwayBullet from './SubwayBullet'
 import Icon from './Icon'
+import SubwayLineSelector from './SubwayLineSelector';
 
 export default class App extends React.Component {
   componentDidMount () {
@@ -22,6 +23,11 @@ export default class App extends React.Component {
       minZoom: 14
     }).addTo(mymap)
   }
+
+  handleSelectSubwayLine = (event) => {
+    console.log('clicked', event)
+  }
+
   render () {
     return (
       <React.Fragment>
@@ -29,49 +35,24 @@ export default class App extends React.Component {
         <main>
           <div className="info-panel">
             <h2>Subway Lines <span className="heading-instructions">Select one for service details</span></h2>
+            {/* <h2>All Stations <span className="heading-instructions">Select one for details</span></h2> */}
             
-            <ul className="subway-lines">
-              <li><a href=""><SubwayBullet line="1" /></a></li>
-              <li><a href=""><SubwayBullet line="2" /></a></li>
-              <li><a href=""><SubwayBullet line="3" /></a></li>
-              <li><a href=""><SubwayBullet line="4" /></a></li>
-              <li><a href=""><SubwayBullet line="5" /></a></li>
-              <li><a href=""><SubwayBullet line="6" /></a></li>
-              <li><a href=""><SubwayBullet line="7" /></a></li>
-              <li><a href=""><SubwayBullet line="A" /></a></li>
-              <li><a href=""><SubwayBullet line="C" /></a></li>
-              <li><a href=""><SubwayBullet line="E" /></a></li>
-              <li><a href=""><SubwayBullet line="L" /></a></li>
-              <li><a href=""><SubwayBullet line="S" /></a></li>
-              <li><a href=""><SubwayBullet line="B" /></a></li>
-              <li><a href=""><SubwayBullet line="D" /></a></li>
-              <li><a href=""><SubwayBullet line="F" /></a></li>
-              <li><a href=""><SubwayBullet line="M" /></a></li>
-              <li><a href=""><SubwayBullet line="N" /></a></li>
-              <li><a href=""><SubwayBullet line="Q" /></a></li>
-              <li><a href=""><SubwayBullet line="R" /></a></li>
-              <li><a href=""><SubwayBullet line="W" /></a></li>
-              <li><a href=""><SubwayBullet line="J" /></a></li>
-              <li><a href=""><SubwayBullet line="Z" /></a></li>
-              <li><a href=""><SubwayBullet line="G" /></a></li>
-              <li><a href=""><SubwayBullet line="SIR" /></a></li>
-            </ul>
+            <SubwayLineSelector onClick={this.handleSelectSubwayLine} />
 
-            <div style={{ clear: 'both' }}></div>
             <hr />
 
-            <h3>DeKalb Av</h3>
-            <span><SubwayBullet line="B" small /></span>
-
-
-            <div className="service-notice">
+            <section>
+              <h3>DeKalb Av</h3>
+              <span><SubwayBullet line="B" small /></span>
+            </section>
+            <section className="service-notice">
               <h3>Weekend Service Notice <span className="heading-instructions">Select one for details</span></h3>
-            
+
               <ul>
                 <li><a href="">TRACK MAINTENANCE 10:45 PM Fri, Oct 12 to 5 AM Mon, Oct 15 Norwood-bound <SubwayBullet line="D" small /> trains skip 25 St, Prospect Av, 4 Av-9 St, Union St and DeKalb Av in Brooklyn</a></li>
                 <li><a href="">TRACK MAINTENANCE 9:30 PM Fri, Oct 12 to 5 AM Mon, Oct 15 <SubwayBullet line="Q" small /> Service between 96 St in Manhattan and Prospect Park in Brooklyn is replaced by <SubwayBullet line="M" small /><SubwayBullet line="N" small /><SubwayBullet line="R" small /> trains and <Icon type="bus" /> free shuttle buses</a></li>
               </ul>
-            </div>
+            </section>
 
           </div>
           <div className="map-container">
