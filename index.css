@@ -8,7 +8,7 @@ body {
   background-color: rgb(234, 232, 225);
 }
 
-#main {
+#app {
   position: absolute;
   top: 0;
   left: 0;

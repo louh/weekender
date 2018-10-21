@@ -52,7 +52,7 @@ export default class Footer extends React.Component {
 
   render () {
     return (
-      <React.Fragment>
+      <footer>
         <div className="footer-left">
           <a href="">Legend</a>
         </div>
@@ -64,7 +64,7 @@ export default class Footer extends React.Component {
             Tell us what you think
           </a>
         </div>
-      </React.Fragment>
+      </footer>
     )
   }
 }
