@@ -20,7 +20,7 @@ export default class Header extends Component {
               <li><a href="">Service by Station</a></li>
               <li><a href="">Service by Line</a></li>
               <li><a href="">Service by Borough</a></li>
-              <li><a href="http://tripplanner.mta.info/" target="_blank" rel="noopener noreferrer">Trip planner+</a></li>
+              <li><a href="http://tripplanner.mta.info/" target="_blank" rel="noopener noreferrer">Trip Planner+</a></li>
               <li><a href="http://mta.info/lirr" target="_blank" rel="noopener noreferrer">LIRR</a> / <a href="http://www.mta.info/mnr" target="_blank" rel="noopener noreferrer">Metro-North</a></li>
               <li><a href="http://mta.info/nyct/" target="_blank" rel="noopener noreferrer">Buses</a></li>
               <li><a href="http://www.mta.info/bandt" target="_blank" rel="noopener noreferrer">Bridges & Tunnels</a></li>
