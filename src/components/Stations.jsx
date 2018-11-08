@@ -12,10 +12,20 @@ export default class Stations extends Component {
     super(props)
 
     this.inputEl = React.createRef()
+
+    this.state = {
+      value: ''
+    }
   }
 
   componentDidMount () {
     this.inputEl.current.focus()
+  }
+
+  handleInputChange = (event) => {
+    this.setState({
+      value: event.target.value
+    })
   }
 
   /**
@@ -36,21 +46,32 @@ export default class Stations extends Component {
     return masterArray.map((thing) => {
       const station = thing.split(':')
       const [ label, id, bullets ] = station
-      return (
-        <li key={id}>
-          <Link to={`/station/${id}`}>
-            <span className="station-list-label">
-              {this.cleanUpStationLabel(label)}
-            </span>
-            <span className="station-list-bullets">
-              {this.renderBullets(bullets)}
-            </span>
-          </Link>
-        </li>
-      )
+      
+      // Display the whole list if there's no filter input
+      // Otherwise filter the list based on input
+      if (!this.state.value || label.toLowerCase().indexOf(this.state.value.toLowerCase()) > -1) {
+        return (
+          <li key={id}>
+            <Link to={`/station/${id}`}>
+              <span className="station-list-label">
+                {this.cleanUpStationLabel(label)}
+              </span>
+              <span className="station-list-bullets">
+                {this.renderBullets(bullets)}
+              </span>
+            </Link>
+          </li>
+        )
+      } else {
+        return null
+      }
     })
   }
 
+  /**
+   * TODO: make results accessible, e.g. with react-autosuggest
+   * TODO: optimize filter
+   */
   render () {
     return (
       <Fragment>
@@ -60,7 +81,14 @@ export default class Stations extends Component {
           <label htmlFor="search-input" className="search-input-label">
             <SearchIcon className="search-icon" />
           </label>
-          <input id="search-input" type="text" placeholder="Station name" ref={this.inputEl} />
+          <input
+            type="text"
+            placeholder="Station name"
+            id="search-input"
+            ref={this.inputEl}
+            value={this.state.value}
+            onChange={this.handleInputChange}
+          />
         </div>
 
         <ul className="station-list">

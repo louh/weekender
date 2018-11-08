@@ -77,8 +77,8 @@
   overflow-y: scroll;
 }
 
-.station-list li:not(:first-child) {
-  border-top: 1px solid black;
+.station-list li {
+  border-bottom: 1px solid black;
 }
 
 .station-list a {
