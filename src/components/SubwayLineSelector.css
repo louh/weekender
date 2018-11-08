@@ -1,0 +1,15 @@
+.subway-lines {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+
+  /* not great, position hack */
+  margin-top: -32px;
+  margin-bottom: 24px;
+}
+
+.subway-lines li {
+  display: block;
+  float: left;
+  margin-right: 3px;
+}

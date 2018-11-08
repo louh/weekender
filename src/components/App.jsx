@@ -5,6 +5,7 @@ import Header from './Header'
 import Footer from './Footer'
 import StationList from './StationList'
 import Station from './Station'
+import LineView from './LineView'
 import Temp from './Temp'
 
 export default class App extends Component {
@@ -25,10 +26,6 @@ export default class App extends Component {
     }).addTo(mymap)
   }
 
-  handleSelectSubwayLine = (event) => {
-    console.log('clicked', event)
-  }
-
   render () {
     return (
       <Fragment>
@@ -37,6 +34,7 @@ export default class App extends Component {
           <div className="info-panel">
             <Route path="/station" exact component={StationList} />
             <Route path="/station/:station_id" component={Station} />
+            <Route path="/line" exact component={LineView} />
             <Route path="/" exact component={Temp} />
           </div>
           <div className="map-container">

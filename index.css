@@ -130,18 +130,6 @@ h2 {
   margin-left: 0.5em;
 }
 
-.subway-lines {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
-
-.subway-lines li {
-  display: block;
-  float: left;
-  margin-right: 3px;
-}
-
 .subway-bullet {
   width: 22px;
   height: 22px;
