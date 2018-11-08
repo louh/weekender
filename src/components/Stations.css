@@ -1,0 +1,112 @@
+.search-input {
+  display: flex;
+  position: relative;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 2px 0;
+  background-color: #f3f2ee;
+  flex: 0 0 36px;
+}
+
+.search-input-label {
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-icon {
+  width: 20px;
+  fill: #666;
+}
+
+.search-input input {
+  border: 0;
+  height: 28px;
+  flex-grow: 1;
+  padding: 0 6px;
+
+  background-color: transparent;
+  font-size: 1em;
+  outline: none;
+}
+
+.search-input input:focus {
+  background-color: white;
+}
+
+/* Do not group these! Invalid selectors will prevent the entire group from displaying */
+.search-input ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: #666;
+  font-style: italic;
+}
+
+.search-input :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #666;
+  font-style: italic;
+  opacity: 1;
+}
+
+.search-input ::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #666;
+  font-style: italic;
+  opacity: 1;
+}
+
+.search-input :-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #666;
+  font-style: italic;
+}
+
+.search-input ::-ms-input-placeholder { /* Microsoft Edge */
+  color: #666;
+  font-style: italic;
+}
+
+.search-input ::placeholder { /* Most modern browsers support this now. */
+  color: #666;
+  font-style: italic;
+}
+
+.station-list {
+  margin-top: 3px;
+  padding: 0;
+  list-style-type: none;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.station-list li:not(:first-child) {
+  border-top: 1px solid black;
+}
+
+.station-list a {
+  display: flex;
+  padding: 2px 0;
+  color: #666;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.station-list a:hover {
+  color: black;
+}
+
+.station-list li span {
+  display: inline-block;
+}
+
+.station-list li:hover {
+  background-color: #f3f2ee;
+}
+
+.station-list-label {
+  flex: 0 0 50%;
+  margin-right: 1em;
+}
+
+.station-list-bullets .subway-bullet-small {
+  margin-right: 2px;
+  vertical-align: sub; /* force visual middle alignment */
+}

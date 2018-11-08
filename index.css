@@ -62,6 +62,8 @@ main {
 }
 
 .info-panel {
+  display: flex;
+  flex-direction: column;
   width: 330px;
   flex: 0 0 330px;
   padding: 0 15px;
@@ -70,6 +72,11 @@ main {
 
 .info-panel > :first-child {
   margin-top: 5px;
+}
+
+/* Not sure about this */
+.info-panel > h2 {
+  flex: 0 0 045px;
 }
 
 .map-container {
@@ -173,6 +180,8 @@ h3 {
   color: black;
 }
 
+/* Don't use the adjacent sibling combinator between two
+subway bullets because it ignores text nodes */
 .service-notice .subway-bullet-small {
   margin-left: 1px;
   margin-right: 1px;
