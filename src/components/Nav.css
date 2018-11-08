@@ -1,0 +1,31 @@
+.nav-container {
+  display: flex;
+}
+
+.nav-left {
+  width: 330px;
+  padding-left: 15px;
+  flex: 0 0 330px;
+  color: #999;
+  column-count: 2;
+}
+
+.nav-left,
+.nav-right {
+  padding-top: 12px;
+}
+
+.nav-right {
+  padding-right: 15px;
+  flex: 1;
+}
+
+.nav-container ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.nav-right ul li {
+  display: inline-block;
+}
