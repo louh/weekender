@@ -3,7 +3,8 @@ import { Route } from 'react-router-dom'
 import L from 'leaflet'
 import Header from './Header'
 import Footer from './Footer'
-import Stations from './Stations'
+import StationList from './StationList'
+import Station from './Station'
 import Temp from './Temp'
 
 export default class App extends Component {
@@ -34,7 +35,8 @@ export default class App extends Component {
         <Header />
         <main>
           <div className="info-panel">
-            <Route path="/station" component={Stations} />
+            <Route path="/station" exact component={StationList} />
+            <Route path="/station/:station_id" component={Station} />
             <Route path="/" exact component={Temp} />
           </div>
           <div className="map-container">

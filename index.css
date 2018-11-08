@@ -111,6 +111,15 @@ main {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.info-panel a {
+  color: #666;
+  text-decoration: none;
+}
+
+.info-panel a:hover {
+  color: black;
+}
+
 h2 {
   font-size: 12px;
 }
@@ -139,11 +148,11 @@ h2 {
 }
 
 hr {
+  width: 100%;
   border: 0;
   border-bottom: 2px solid black;
   clear: both;
-  margin-top: 22px;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 h3 {

@@ -84,13 +84,7 @@
 .station-list a {
   display: flex;
   padding: 2px 0;
-  color: #666;
   font-weight: bold;
-  text-decoration: none;
-}
-
-.station-list a:hover {
-  color: black;
 }
 
 .station-list li span {
