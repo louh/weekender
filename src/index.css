@@ -158,6 +158,11 @@ h3 {
   border-top: 1px solid black;
 }
 
+.service-notice {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
 .service-notice ul {
   padding: 0;
   list-style-type: none;
@@ -165,7 +170,7 @@ h3 {
 
 .service-notice li {
   margin-bottom: 1em;
-  line-height: 16px;
+  line-height: 1.4;
 }
 
 .service-notice a {
@@ -179,5 +184,13 @@ h3 {
 }
 
 .service-notice li img {
+  vertical-align: text-bottom;
+}
+
+.service-notice p {
+  line-height: 1.4;
+}
+
+.service-notice p img {
   vertical-align: text-bottom;
 }

@@ -17,6 +17,9 @@ function splitStatusText (text) {
  * @param {string} string 
  */
 function replaceStringWithReactComponent (string) {
+  // Returns as-is if not a string
+  if (typeof string !== 'string') return string
+
   const array = string.replace(/{{(.+?)}}/g, '|{{$1}}|').split('|')
 
   const thing = array.map((item) => {
@@ -65,6 +68,38 @@ function transformStatusTitle (text) {
   return phase2
 }
 
+function transformStatusDetail (text) {
+  // Typography - should address variable whitespace
+  const phase1 = text.replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*/g, '\u200a–\u200a')
+
+  // Replace image HTML with {{brackets}}
+  const phase1b = phase1.replace(/<img src='images\/routes\/14px\//g, '{{').replace(/.(png|gif)' align='bottom' \/>/g, '}}')
+
+  // Add newlines between things
+  // Split on anything that is 2 or more spaces
+  // Drop any new array items that are empty strings
+  const phase2 = phase1b.split(/ {2,}/).filter(i => i !== '')
+  // Then add <br /> tags in between each line in React
+  for (let i = 0; i < phase2.length; i++) {
+    if (i % 2 === 0 && i < phase2.length - 1) {
+      phase2.splice(i + 1, 0, <br />)
+    }
+  }
+
+  // Turn title into bold text
+  // phase2[0] = <strong>{phase2[0]}</strong>
+
+  // Replace images with bullet components
+  // phase2[5] = phase2[5].replace(/<img src='images\/routes\/14px\/([A-Z0-9]|SIR).(png|gif)' align='bottom' \/>/g, <SubwayBullet line="Q" small />)
+  const phase3 = phase2.map(replaceStringWithReactComponent)
+  // phase2[phase2.length - 1] = replaceStringWithReactComponent(phase2[phase2.length - 1])
+
+  // Original appends "more" to the end
+  // phase2.push(' ... more')
+
+  return phase3
+}
+
 class Station extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
@@ -78,6 +113,48 @@ class Station extends Component {
   
   renderStatusTitles = (statuses) => {
     return statuses.map((text) => <li><a href="">{transformStatusTitle(text)}</a></li>)
+  }
+
+  renderStatusView = (statuses, details) => {
+    console.log(statuses.length)
+    if (statuses.length === 1) {
+      return (
+        <Fragment>
+          <h3>Weekend Service Notice</h3>
+
+          <p>
+            {transformStatusTitle(statuses[0])}
+          </p>
+
+          <p>
+            {transformStatusDetail(details[0])}
+          </p>
+        </Fragment>
+      )
+    } else if (statuses.length >= 1) {
+      return (
+        <Fragment>
+          <h3>
+            Weekend Service Notice
+            <span className="heading-instructions">Select one for details</span>
+          </h3>
+
+          <ul>
+            {this.renderStatusTitles(statuses)}
+          </ul>
+        </Fragment>
+      )
+    } else {
+      return (
+        <Fragment>
+          <h3>Weekend Service Notice</h3>
+
+          <p>
+            No scheduled work affecting service at this station.
+          </p>
+        </Fragment>
+      )
+    }
   }
 
   render () {
@@ -119,21 +196,7 @@ class Station extends Component {
           <span className="station-bullets">{this.renderBullets(station.lines)}</span>
         </section>
         <section className="service-notice">
-          <h3>
-            Weekend Service Notice
-            {(statuses.length > 0) && <span className="heading-instructions">Select one for details</span>}
-          </h3>
-
-          {(statuses.length > 0) && (
-            <ul>
-              {this.renderStatusTitles(statuses)}
-            </ul>
-          )}
-          {(statuses.length === 0) && (
-            <p>
-              No scheduled work affecting service at this station.
-            </p>
-          )}
+          {this.renderStatusView(statuses, details)}
         </section>
       </Fragment>
     )
