@@ -7,14 +7,25 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import App from './components/App'
 
 // Test proxy
-window.fetch('http://35.196.121.180/mta/status/weekendboroughstatus.js')
-
-
-// Proof of concept React
+// window.fetch('http://35.196.121.180/mta/status/weekendboroughstatus.js')
+const scriptPromise = new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  document.body.appendChild(script)
+  script.onload = resolve
+  script.onerror = reject
+  script.async = true
+  script.src = '/fixtures/weekendstatus.js'
+})
 
 const mountNode = document.getElementById('app')
-ReactDOM.render(
-  <Router>
-    <App />
-  </Router>
-, mountNode)
+
+scriptPromise.then(() => {
+  console.log('test data loaded')
+
+  // Render only after data loads, for now.
+  ReactDOM.render(
+    <Router>
+      <App />
+    </Router>
+  , mountNode)
+  })

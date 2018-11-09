@@ -169,19 +169,13 @@ h3 {
 }
 
 .service-notice a {
+  display: block; /* Mouse hovers over entire block, not just text */
   text-decoration: none;
   color: #666;
 }
 
 .service-notice a:hover {
   color: black;
-}
-
-/* Don't use the adjacent sibling combinator between two
-subway bullets because it ignores text nodes */
-.service-notice .subway-bullet-small {
-  margin-left: 1px;
-  margin-right: 1px;
 }
 
 .service-notice li img {

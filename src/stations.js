@@ -10,7 +10,7 @@ const STATIONS_LIST = new Map()
  */
 function cleanUpStationLabel (label) {
   // Also, there is a stray &rsquo; which we just convert to unicode here
-  return label.replace(/\s?-\s?/, '\u200a–\u200a').replace('&rsquo;', '’')
+  return label.replace(/\s*-\s*/, '\u200a–\u200a').replace('&rsquo;', '’')
 }
 
 masterArray.forEach((item) => {
