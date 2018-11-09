@@ -13,19 +13,24 @@ import LandingView from './LandingView'
 export default class App extends Component {
   componentDidMount () {
     // Proof of concept Leaflet map tiles
-    // Artificial wait because map might initialize while DOM layout is still doing stuff
-    const mymap = L.map('map', {
+    const map = L.map('map', {
       attributionControl: false,
       zoomControl: false,
-      center:  {lat: 40.800766363190576, lng: -73.92056884244084},
-      zoom: 15
+      center: { lat: 40.80077, lng: -73.92057 },
+      zoom: 15,
+      maxBounds: L.latLngBounds(L.latLng(40.88031, -73.981899), L.latLng(40.769620, -73.835736)),
+      maxBoundsViscosity: 0.5
     })
 
     L.tileLayer('/tiles/{z}/{x}/{y}.png', {
       attribution: false,
       maxZoom: 16,
-      minZoom: 14
-    }).addTo(mymap)
+      minZoom: 15
+    }).addTo(map)
+
+    map.on('click', (event) => {
+      console.log(event.latlng)
+    })
   }
 
   render () {
