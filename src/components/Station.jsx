@@ -1,10 +1,26 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import PropTypes from "prop-types"
+import { Link, withRouter } from 'react-router-dom'
 import SubwayBullet from './SubwayBullet'
 import Icon from './Icon'
+import STATIONS_LIST from '../stations'
+import './Station.css'
 
-export default class Temp extends Component {
+class Station extends Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  }
+
+  renderBullets = (bullets) => {
+    return bullets.map((line) => <SubwayBullet line={line} small key={line} />)
+  }
+
   render () {
+    const id = Number.parseInt(this.props.match.params.station_id, 10)
+    const station = STATIONS_LIST.get(id)
+
     return (
       <Fragment>
         <h2>
@@ -12,8 +28,8 @@ export default class Temp extends Component {
         </h2>
         <hr />
         <section>
-          <h3>DeKalb Av</h3>
-          <span><SubwayBullet line="B" small /></span>
+          <h3>{station.label}</h3>
+          <span className="station-bullets">{this.renderBullets(station.lines)}</span>
         </section>
         <section className="service-notice">
           <h3>Weekend Service Notice <span className="heading-instructions">Select one for details</span></h3>
@@ -27,3 +43,5 @@ export default class Temp extends Component {
     )
   }
 }
+
+export default withRouter(Station)
