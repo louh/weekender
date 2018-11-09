@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Nav from './Nav'
 
-import IMG_WEEKENDER_TITLE from '../../images/weekender.svg'
+import IMG_WEEKENDER_TITLE from '../images/weekender.svg'
 import './Header.css'
 
 export default class Header extends Component {

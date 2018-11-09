@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy-images": "cp -R ./images ./dist",
-    "start": "npm run copy-images && parcel index.html",
-    "build": "npm run copy-images && parcel build index.html"
+    "start": "npm run copy-images && parcel src/index.html",
+    "build": "npm run copy-images && parcel build src/index.html"
   },
   "author": "",
   "license": "MIT",

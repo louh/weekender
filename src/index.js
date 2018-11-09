@@ -1,10 +1,10 @@
-import leafletStyles from './node_modules/leaflet/dist/leaflet.css'
+import leafletStyles from '../node_modules/leaflet/dist/leaflet.css'
 import styles from './index.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
-import App from './src/components/App'
+import App from './components/App'
 
 // Test proxy
 window.fetch('http://35.196.121.180/mta/status/weekendboroughstatus.js')

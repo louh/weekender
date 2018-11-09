@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import ICON_AIGA_BUS from '../../images/aiga_bus_clear.svg'
+import ICON_AIGA_BUS from '../images/aiga_bus_clear.svg'
 
 const Icon = (props) => {
   switch (props.type) {
