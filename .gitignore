@@ -1,4 +1,5 @@
 .cache
-dist
+dist/*
+!dist/.gitkeep
 node_modules
 .DS_Store
