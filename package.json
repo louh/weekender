@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html"
+    "copy-images": "cp -R ./images ./dist",
+    "start": "npm run copy-images && parcel index.html",
+    "build": "npm run copy-images && parcel build index.html"
   },
   "author": "",
   "license": "MIT",
