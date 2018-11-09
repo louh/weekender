@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Footer.css'
 
 export default class Footer extends React.Component {
@@ -54,7 +55,7 @@ export default class Footer extends React.Component {
     return (
       <footer>
         <div className="footer-left">
-          <a href="">Legend</a>
+          <Link to="/legend">Legend</Link>
         </div>
         <div className="footer-middle">
           {this.renderWeekendDates()}

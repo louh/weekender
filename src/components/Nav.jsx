@@ -9,7 +9,7 @@ export default class Nav extends Component {
         <div className="nav-left">
           {/* Do not use images here like in the original, it facilitates localization */}
           <ul>
-            <li><Link to="/">Service Status</Link></li>
+            <li><Link to="/status">Service Status</Link></li>
             <li><Link to="/station">Service by Station</Link></li>
             <li><Link to="/line">Service by Line</Link></li>
             <li><Link to="/borough">Service by Borough</Link></li>

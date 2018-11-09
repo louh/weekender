@@ -1,0 +1,9 @@
+.status-view {
+  text-align: center;
+  padding-top: 2em;
+}
+
+.status-view iframe {
+  background-color: white;
+  border: 0;
+}
