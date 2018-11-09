@@ -21,7 +21,7 @@ export default class App extends Component {
       zoom: 15
     })
 
-    L.tileLayer('./images/tiles/{z}/{x}/{y}.png', {
+    L.tileLayer('/images/tiles/{z}/{x}/{y}.png', {
       attribution: false,
       maxZoom: 16,
       minZoom: 14
