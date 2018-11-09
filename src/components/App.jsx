@@ -8,7 +8,7 @@ import StationList from './StationList'
 import Station from './Station'
 import LineView from './LineView'
 import Legend from './Legend'
-import Temp from './Temp'
+import LandingView from './LandingView'
 
 export default class App extends Component {
   componentDidMount () {
@@ -39,7 +39,7 @@ export default class App extends Component {
             <Route path="/station/:station_id" component={Station} />
             <Route path="/line" exact component={LineView} />
             <Route path="/legend" exact component={Legend} />
-            <Route path="/" exact component={Temp} />
+            <Route path="/" exact component={LandingView} />
           </div>
           <div className="map-container">
             <div id="map"></div>
