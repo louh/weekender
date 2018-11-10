@@ -7,7 +7,7 @@ import STATIONS_LIST from '../stations'
 import './Station.css'
 
 function splitStatusText (text) {
-  return text.split('<br>$$<br>')
+  return text.split('$$')
 }
 
 /**
@@ -30,7 +30,10 @@ function replaceStringWithReactComponent (string) {
       } else {
         return <SubwayBullet line={line} small />
       }
+    } else if (item.match('<br>')) {
+      return <br />
     }
+
     return item
   })
 
@@ -39,7 +42,8 @@ function replaceStringWithReactComponent (string) {
 
 function transformStatusTitle (text) {
   // Typography - should address variable whitespace
-  const phase1 = text.replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*/g, '\u200a–\u200a')
+  // Also get rid of <br>
+  const phase1 = text.replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*/g, '\u200a–\u200a').replace(/<br>/g, '')
 
   // Replace image HTML with {{brackets}}
   const phase1b = phase1.replace(/<img src='images\/routes\/14px\//g, '{{').replace(/.(png|gif)' align='bottom' \/>/g, '}}')
@@ -59,7 +63,6 @@ function transformStatusTitle (text) {
   phase2[0] = <strong>{phase2[0]}</strong>
 
   // Replace images with bullet components
-  // phase2[5] = phase2[5].replace(/<img src='images\/routes\/14px\/([A-Z0-9]|SIR).(png|gif)' align='bottom' \/>/g, <SubwayBullet line="Q" small />)
   phase2[phase2.length - 1] = replaceStringWithReactComponent(phase2[phase2.length - 1])
 
   // Original appends "more" to the end
@@ -75,27 +78,13 @@ function transformStatusDetail (text) {
   // Replace image HTML with {{brackets}}
   const phase1b = phase1.replace(/<img src='images\/routes\/14px\//g, '{{').replace(/.(png|gif)' align='bottom' \/>/g, '}}')
 
-  // Add newlines between things
-  // Split on anything that is 2 or more spaces
-  // Drop any new array items that are empty strings
-  const phase2 = phase1b.split(/ {2,}/).filter(i => i !== '')
-  // Then add <br /> tags in between each line in React
-  for (let i = 0; i < phase2.length; i++) {
-    if (i % 2 === 0 && i < phase2.length - 1) {
-      phase2.splice(i + 1, 0, <br />)
-    }
-  }
-
-  // Turn title into bold text
-  // phase2[0] = <strong>{phase2[0]}</strong>
+  // Special work with <br>
+  // If string begins with <br>, remove it
+  // Otherwise surround it with | so it can be split on later
+  const phase2 = phase1b.replace(/^<br>/, '').replace(/<br>/g, '|<br>|')
 
   // Replace images with bullet components
-  // phase2[5] = phase2[5].replace(/<img src='images\/routes\/14px\/([A-Z0-9]|SIR).(png|gif)' align='bottom' \/>/g, <SubwayBullet line="Q" small />)
-  const phase3 = phase2.map(replaceStringWithReactComponent)
-  // phase2[phase2.length - 1] = replaceStringWithReactComponent(phase2[phase2.length - 1])
-
-  // Original appends "more" to the end
-  // phase2.push(' ... more')
+  const phase3 = replaceStringWithReactComponent(phase2)
 
   return phase3
 }
@@ -116,7 +105,6 @@ class Station extends Component {
   }
 
   renderStatusView = (statuses, details) => {
-    console.log(statuses.length)
     if (statuses.length === 1) {
       return (
         <Fragment>
