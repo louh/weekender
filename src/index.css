@@ -170,6 +170,7 @@ h3 {
 
 .service-notice li {
   margin-bottom: 1em;
+  margin-top: 2em;
   line-height: 1.4;
 }
 
@@ -191,6 +192,26 @@ h3 {
   line-height: 1.4;
 }
 
+.service-notice > p:first-of-type {
+  margin-top: 2em;
+}
+
 .service-notice p img {
   vertical-align: text-bottom;
+}
+
+.service-notice-active a {
+  color: black;
+}
+
+.service-notice-details {
+  display: none;
+}
+
+.service-notice-details {
+  margin-bottom: 0;
+}
+
+.service-notice-active .service-notice-details {
+  display: block;
 }

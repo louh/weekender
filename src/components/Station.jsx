@@ -22,16 +22,16 @@ function replaceStringWithReactComponent (string) {
 
   const array = string.replace(/{{(.+?)}}/g, '|{{$1}}|').split('|')
 
-  const thing = array.map((item) => {
+  const thing = array.map((item, i) => {
     if (item.match(/^{{.+}}$/)) {
       const line = item.replace('{{', '').replace('}}', '')
       if (line === 'shuttle_bus') {
-        return <Icon type="bus" />
+        return <Icon type="bus" key={i * 10} />
       } else {
-        return <SubwayBullet line={line} small />
+        return <SubwayBullet line={line} small key={i * 10} />
       }
     } else if (item.match('<br>')) {
-      return <br />
+      return <br key={i * 10} />
     }
 
     return item
@@ -55,12 +55,12 @@ function transformStatusTitle (text) {
   // Then add <br /> tags in between each line in React
   for (let i = 0; i < phase2.length; i++) {
     if (i % 2 === 0 && i < phase2.length - 1) {
-      phase2.splice(i + 1, 0, <br />)
+      phase2.splice(i + 1, 0, <br key={i + 1} />)
     }
   }
 
   // Turn title into bold text
-  phase2[0] = <strong>{phase2[0]}</strong>
+  phase2[0] = <strong key={0}>{phase2[0]}</strong>
 
   // Replace images with bullet components
   phase2[phase2.length - 1] = replaceStringWithReactComponent(phase2[phase2.length - 1])
@@ -79,9 +79,9 @@ function transformStatusDetail (text) {
   const phase1b = phase1.replace(/<img src='images\/routes\/14px\//g, '{{').replace(/.(png|gif)' align='bottom' \/>/g, '}}')
 
   // Special work with <br>
-  // If string begins with <br>, remove it
+  // If string begins or ends with any amount of <br>, remove it
   // Otherwise surround it with | so it can be split on later
-  const phase2 = phase1b.replace(/^<br>/, '').replace(/<br>/g, '|<br>|')
+  const phase2 = phase1b.replace(/^<br>/, '').replace(/(<br>)*$/, '').replace(/<br>/g, '|<br>|')
 
   // Replace images with bullet components
   const phase3 = replaceStringWithReactComponent(phase2)
@@ -96,12 +96,46 @@ class Station extends Component {
     history: PropTypes.object.isRequired
   }
 
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      activeStatus: null
+    }
+  }
+
+  handleClickStatus = (event, id) => {
+    event.preventDefault()
+
+    // Toggles active state
+    if (id === this.state.activeStatus) {
+      this.setState({
+        activeStatus: null
+      })
+    } else {
+      this.setState({
+        activeStatus: id
+      })
+    }
+  }
+
   renderBullets = (bullets) => {
     return bullets.map((line) => <SubwayBullet line={line} small key={line} />)
   }
   
-  renderStatusTitles = (statuses) => {
-    return statuses.map((text) => <li><a href="">{transformStatusTitle(text)}</a></li>)
+  renderStatusTitles = (statuses, details) => {
+    return statuses.map((text, i) => (
+      <li className={(this.state.activeStatus === i) && 'service-notice-active'} key={i}>
+        <a href="" onClick={(e) => this.handleClickStatus(e, i)}>
+          <p>
+            {transformStatusTitle(text)}
+          </p>
+          <p className="service-notice-details">
+            {transformStatusDetail(details[i])}
+          </p>
+        </a>
+      </li>
+    ))
   }
 
   renderStatusView = (statuses, details) => {
@@ -128,7 +162,7 @@ class Station extends Component {
           </h3>
 
           <ul>
-            {this.renderStatusTitles(statuses)}
+            {this.renderStatusTitles(statuses, details)}
           </ul>
         </Fragment>
       )
