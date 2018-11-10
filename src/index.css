@@ -215,3 +215,7 @@ h3 {
 .service-notice-active .service-notice-details {
   display: block;
 }
+
+.icon-isa {
+  height: 18px;
+}

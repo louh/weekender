@@ -27,6 +27,8 @@ function replaceStringWithReactComponent (string) {
       const line = item.replace('{{', '').replace('}}', '')
       if (line === 'shuttle_bus') {
         return <Icon type="bus" key={i * 10} />
+      } else if (line === 'isa') {
+        return <Icon type="isa" key={i * 10} />
       } else {
         return <SubwayBullet line={line} small key={i * 10} />
       }
@@ -78,10 +80,13 @@ function transformStatusDetail (text) {
   // Replace image HTML with {{brackets}}
   const phase1b = phase1.replace(/<img src='images\/routes\/14px\//g, '{{').replace(/.(png|gif)' align='bottom' \/>/g, '}}')
 
+  // Replace accessibility symbol
+  const phase1c = phase1b.replace(/<img src='images\/ADA_WhlChr_small.gif'\s*\/?>/g, '{{isa}}')
+
   // Special work with <br>
   // If string begins or ends with any amount of <br>, remove it
   // Otherwise surround it with | so it can be split on later
-  const phase2 = phase1b.replace(/^<br>/, '').replace(/(<br>)*$/, '').replace(/<br>/g, '|<br>|')
+  const phase2 = phase1c.replace(/^<br>/, '').replace(/(<br>)*$/, '').replace(/<br>/g, '|<br>|')
 
   // Replace images with bullet components
   const phase3 = replaceStringWithReactComponent(phase2)
