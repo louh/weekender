@@ -130,7 +130,7 @@ class Station extends Component {
   
   renderStatusTitles = (statuses, details) => {
     return statuses.map((text, i) => (
-      <li className={(this.state.activeStatus === i) && 'service-notice-active'} key={i}>
+      <li className={(this.state.activeStatus === i) ? 'service-notice-active' : undefined} key={i}>
         <a href="" onClick={(e) => this.handleClickStatus(e, i)}>
           <p>
             {transformStatusTitle(text)}
