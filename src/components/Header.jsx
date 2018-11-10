@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Nav from './Nav'
 
 import IMG_WEEKENDER_TITLE from '../images/weekender.svg'
-import IMG_WEEKENDER_TITLE_LEGACY from '../images/weekender_LEGACY.svg' // Easter egg.
+import IMG_WEEKENDER_TITLE_LEGACY from '../images/weekender_legacy.svg' // Easter egg.
 import './Header.css'
 
 export default class Header extends Component {
