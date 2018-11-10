@@ -64,7 +64,7 @@ export default class StationList extends Component {
   render () {
     return (
       <Fragment>
-        <h2>All Stations <span className="heading-instructions">Select one for details</span></h2>
+        <h2>All stations <span className="heading-instructions">Select one for details</span></h2>
 
         <div className="search-input">
           <label htmlFor="search-input" className="search-input-label">

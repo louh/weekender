@@ -42,10 +42,14 @@ function replaceStringWithReactComponent (string) {
   return thing
 }
 
+function capitalizeFirstLetter (string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 function transformStatusTitle (text) {
   // Typography - should address variable whitespace
   // Also get rid of <br>
-  const phase1 = text.replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*/g, '\u200a–\u200a').replace(/<br>/g, '')
+  const phase1 = text.trim().replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*/g, '\u200a–\u200a').replace(/<br>/g, '')
 
   // Replace image HTML with {{brackets}}
   const phase1b = phase1.replace(/<img src='images\/routes\/14px\//g, '{{').replace(/.(png|gif)' align='bottom' \/>/g, '}}')
@@ -62,7 +66,7 @@ function transformStatusTitle (text) {
   }
 
   // Turn title into bold text
-  phase2[0] = <strong key={0}>{phase2[0]}</strong>
+  phase2[0] = <strong key={0}>{capitalizeFirstLetter(phase2[0].toLowerCase())}</strong>
 
   // Replace images with bullet components
   phase2[phase2.length - 1] = replaceStringWithReactComponent(phase2[phase2.length - 1])
@@ -75,7 +79,7 @@ function transformStatusTitle (text) {
 
 function transformStatusDetail (text) {
   // Typography - should address variable whitespace
-  const phase1 = text.replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*/g, '\u200a–\u200a')
+  const phase1 = text.trim().replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*/g, '\u200a–\u200a')
 
   // Replace image HTML with {{brackets}}
   const phase1b = phase1.replace(/<img src='images\/routes\/14px\//g, '{{').replace(/.(png|gif)' align='bottom' \/>/g, '}}')
@@ -86,7 +90,7 @@ function transformStatusDetail (text) {
   // Special work with <br>
   // If string begins or ends with any amount of <br>, remove it
   // Otherwise surround it with | so it can be split on later
-  const phase2 = phase1c.replace(/^<br>/, '').replace(/(<br>)*$/, '').replace(/<br>/g, '|<br>|')
+  const phase2 = phase1c.replace(/^(<br>)*/, '').replace(/(<br>)*$/, '').replace(/<br>/g, '|<br>|')
 
   // Replace images with bullet components
   const phase3 = replaceStringWithReactComponent(phase2)
@@ -130,16 +134,16 @@ class Station extends Component {
   
   renderStatusTitles = (statuses, details) => {
     return statuses.map((text, i) => (
-      <li className={(this.state.activeStatus === i) ? 'service-notice-active' : undefined} key={i}>
-        <a href="" onClick={(e) => this.handleClickStatus(e, i)}>
+      <a href="" onClick={(e) => this.handleClickStatus(e, i)}>
+        <article className={(this.state.activeStatus === i) ? 'service-notice-active' : undefined} key={i}>
           <p>
             {transformStatusTitle(text)}
           </p>
           <p className="service-notice-details">
             {transformStatusDetail(details[i])}
           </p>
-        </a>
-      </li>
+        </article>
+      </a>
     ))
   }
 
@@ -147,34 +151,34 @@ class Station extends Component {
     if (statuses.length === 1) {
       return (
         <Fragment>
-          <h3>Weekend Service Notice</h3>
+          <h3>Weekend service notice</h3>
 
-          <p>
-            {transformStatusTitle(statuses[0])}
-          </p>
+          <article className="service-notice-active">
+            <p>
+              {transformStatusTitle(statuses[0])}
+            </p>
 
-          <p>
-            {transformStatusDetail(details[0])}
-          </p>
+            <p>
+              {transformStatusDetail(details[0])}
+            </p>
+          </article>
         </Fragment>
       )
     } else if (statuses.length >= 1) {
       return (
         <Fragment>
           <h3>
-            Weekend Service Notice
+            Weekend service notice
             <span className="heading-instructions">Select one for details</span>
           </h3>
 
-          <ul>
-            {this.renderStatusTitles(statuses, details)}
-          </ul>
+          {this.renderStatusTitles(statuses, details)}
         </Fragment>
       )
     } else {
       return (
         <Fragment>
-          <h3>Weekend Service Notice</h3>
+          <h3>Weekend service notice</h3>
 
           <p>
             No scheduled work affecting service at this station.
@@ -201,13 +205,6 @@ class Station extends Component {
         statuses.push(text[0])
         details.push(text[1])
 
-        // var detail = GetStatusDetailText(statustext[statusID]);
-        // detail = detail.replace(/<img/g, "<img style='position:relative; top:2px;' ")
-        // console.log(title)
-        // sCount++;
-        // statusMsg += '<div class="statusHeaderText" onmouseover="AllStationMouseOver(this);" onmouseout="AllStationMouseOut(this);" onclick="ShowHide(' + divID + ');">' + title + '</div><br>';
-        // //statusMsg += '<div id=' + divID + ' style=display:none;top:5px;>' + detail + '</div>';
-        // statusMsg += '<div id=' + divID + ' style=display:none;top:5px;>' + detail ;
         // statusMsg += '<a href="http://tripplanner.mta.info/MyTrip/ui_web/customplanner/tripplanner.aspx" border=0 target=_blank><img border=0 src=images/TPLink.jpg></a>' + '</div>';
       }
     }
@@ -215,13 +212,16 @@ class Station extends Component {
     return (
       <Fragment>
         <h2>
-          <Link to="/station">All Stations</Link>
+          <Link to="/station">All stations</Link>
         </h2>
+
         <hr />
+
         <section>
           <h3>{station.label}</h3>
           <span className="station-bullets">{this.renderBullets(station.lines)}</span>
         </section>
+
         <section className="service-notice">
           {this.renderStatusView(statuses, details)}
         </section>
