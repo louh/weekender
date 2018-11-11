@@ -139,6 +139,7 @@ class Station extends Component {
           <p>
             {transformStatusTitle(text)}
           </p>
+
           <p className="service-notice-details">
             {transformStatusDetail(details[i])}
           </p>
@@ -158,7 +159,7 @@ class Station extends Component {
               {transformStatusTitle(statuses[0])}
             </p>
 
-            <p>
+            <p className="service-notice-details">
               {transformStatusDetail(details[0])}
             </p>
           </article>
@@ -188,9 +189,30 @@ class Station extends Component {
     }
   }
 
+  renderError () {
+    return (
+      <Fragment>
+        <h2>
+          <Link to="/station">All stations</Link>
+        </h2>
+
+        <hr />
+
+        <section>
+          <h3>Invalid station</h3>
+        </section>
+      </Fragment>
+    )
+  }
+
   render () {
     const stationId = Number.parseInt(this.props.match.params.station_id, 10)
     const station = STATIONS_LIST.get(stationId)
+    
+    // If station isn't found, bail and render error
+    if (typeof station === 'undefined') {
+      return this.renderError()
+    }
 
     /* global weekendstatus */
     const statuses = []
