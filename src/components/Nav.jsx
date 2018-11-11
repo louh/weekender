@@ -9,17 +9,17 @@ export default class Nav extends Component {
         <div className="nav-left">
           {/* Do not use images here like in the original, it facilitates localization */}
           <ul>
-            <li><Link to="/status">Service Status</Link></li>
+            <li className="hidden"><Link to="/status">Service Status</Link></li>
             <li><Link to="/station">Service by Station</Link></li>
             <li><Link to="/line">Service by Line</Link></li>
             <li><Link to="/borough">Service by Borough</Link></li>
-            <li><a href="http://tripplanner.mta.info/" target="_blank" rel="noopener noreferrer">Trip Planner+</a></li>
-            <li><a href="http://mta.info/lirr" target="_blank" rel="noopener noreferrer">LIRR</a> / <a href="http://www.mta.info/mnr" target="_blank" rel="noopener noreferrer">Metro-North</a></li>
-            <li><a href="http://mta.info/nyct/" target="_blank" rel="noopener noreferrer">Buses</a></li>
-            <li><a href="http://www.mta.info/bandt" target="_blank" rel="noopener noreferrer">Bridges & Tunnels</a></li>
+            <li className="hidden"><a href="http://tripplanner.mta.info/" target="_blank" rel="noopener noreferrer">Trip Planner+</a></li>
+            <li className="hidden"><a href="http://mta.info/lirr" target="_blank" rel="noopener noreferrer">LIRR</a> / <a href="http://www.mta.info/mnr" target="_blank" rel="noopener noreferrer">Metro-North</a></li>
+            <li className="hidden"><a href="http://mta.info/nyct/" target="_blank" rel="noopener noreferrer">Buses</a></li>
+            <li className="hidden"><a href="http://www.mta.info/bandt" target="_blank" rel="noopener noreferrer">Bridges & Tunnels</a></li>
           </ul>
         </div>
-        <div className="nav-right">
+        <div className="nav-right hidden">
           <br /><br /><br />
           <ul>
             <li><a href="">Subway Diagram</a></li>

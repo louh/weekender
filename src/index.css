@@ -61,6 +61,10 @@ main {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .info-panel {
   display: flex;
   flex-direction: column;

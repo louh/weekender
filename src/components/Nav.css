@@ -7,7 +7,7 @@
   padding-left: 15px;
   flex: 0 0 330px;
   color: #999;
-  column-count: 2;
+  /* column-count: 2; */
 }
 
 .nav-left,

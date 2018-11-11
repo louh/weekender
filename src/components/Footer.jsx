@@ -60,7 +60,7 @@ export default class Footer extends React.Component {
         <div className="footer-middle">
           {this.renderWeekendDates()}
         </div>
-        <div className="footer-right">
+        <div className="footer-right hidden">
           <a href="http://web.mta.info/faqs.htm" target="_blank" rel="noopener noreferrer">
             Tell us what you think
           </a>
