@@ -80,9 +80,11 @@ export default class StationList extends Component {
           />
         </div>
 
-        <ul className="station-list">
-          {this.renderStationList()}
-        </ul>
+        <div className="station-list-container">
+          <ul className="station-list">
+            {this.renderStationList()}
+          </ul>
+        </div>
       </Fragment>
     )
   }

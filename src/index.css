@@ -75,7 +75,6 @@ main {
   margin-top: 5px;
 }
 
-/* Not sure about this */
 .info-panel > h2 {
   flex: 0 0 40px;
 }
@@ -162,6 +161,8 @@ h3 {
 .service-notice {
   overflow: hidden;
   overflow-y: auto;
+  flex: 1 1 auto;
+  height: 400px; /* Required for overflow-y to work in Firefox */
 }
 
 .service-notice ul {

@@ -69,12 +69,18 @@
   font-style: italic;
 }
 
+.station-list-container {
+  overflow: hidden;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  margin: 3px 0;
+  height: 400px; /* for some reason specifying a height is required for overflow-y: auto work in Firefox */
+}
+
 .station-list {
-  margin-top: 3px;
+  margin-top: 0;
   padding: 0;
   list-style-type: none;
-  overflow: hidden;
-  overflow-y: scroll;
 }
 
 .station-list li {
