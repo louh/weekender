@@ -7,7 +7,11 @@ import STATIONS_LIST from '../stations'
 import './Station.css'
 
 function splitStatusText (text) {
-  return text.split('$$')
+  const split = text.split('$$')
+  return {
+    summary: split[0],
+    details: split[1]
+  }
 }
 
 /**
@@ -46,7 +50,7 @@ function capitalizeFirstLetter (string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-function transformStatusTitle (text) {
+function transformStatusSummary (text) {
   // Typography - should address variable whitespace
   // Also get rid of <br>
   const phase1 = text.trim().replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*/g, '\u200a–\u200a').replace(/<br>/g, '')
@@ -131,36 +135,37 @@ class Station extends Component {
   renderBullets = (bullets) => {
     return bullets.map((line) => <SubwayBullet line={line} small key={line} />)
   }
-  
-  renderStatusTitles = (statuses, details) => {
-    return statuses.map((text, i) => (
-      <a href="" onClick={(e) => this.handleClickStatus(e, i)}>
+
+  renderInteractiveStatus = (statuses) => {
+    return statuses.map(({ summary, details }, i) => (
+      <a href="" onClick={(e) => this.handleClickStatus(e, i)} key={i}>
         <article className={(this.state.activeStatus === i) ? 'service-notice-active' : undefined} key={i}>
           <p>
-            {transformStatusTitle(text)}
+            {transformStatusSummary(summary)}
           </p>
 
           <p className="service-notice-details">
-            {transformStatusDetail(details[i])}
+            {transformStatusDetail(details)}
           </p>
         </article>
       </a>
     ))
   }
 
-  renderStatusView = (statuses, details) => {
+  renderStatusView = (statuses) => {
     if (statuses.length === 1) {
+      const status = statuses[0]
       return (
         <Fragment>
           <h3>Weekend service notice</h3>
 
           <article className="service-notice-active">
             <p>
-              {transformStatusTitle(statuses[0])}
+              {transformStatusSummary(status.summary)}
             </p>
 
             <p className="service-notice-details">
-              {transformStatusDetail(details[0])}
+              {transformStatusDetail(status.details)}
             </p>
           </article>
         </Fragment>
@@ -173,7 +178,7 @@ class Station extends Component {
             <span className="heading-instructions">Select one for details</span>
           </h3>
 
-          {this.renderStatusTitles(statuses, details)}
+          {this.renderInteractiveStatus(statuses)}
         </Fragment>
       )
     } else {
@@ -208,24 +213,19 @@ class Station extends Component {
   render () {
     const stationId = Number.parseInt(this.props.match.params.station_id, 10)
     const station = STATIONS_LIST.get(stationId)
-    
+
     // If station isn't found, bail and render error
     if (typeof station === 'undefined') {
       return this.renderError()
     }
 
-    /* global weekendstatus */
+    /* global weekendstatus, statustext */
     const statuses = []
-    const details = []
     for (let i = 0; i < weekendstatus.length; i++) {
-      const status = weekendstatus[i].split(",")
-      if (status[2] == stationId) {
-        if (!status[0]) continue
-
-        const statusID = status[0]
-        const text = splitStatusText(statustext[statusID])
-        statuses.push(text[0])
-        details.push(text[1])
+      const [ statusId , unused, station ] = weekendstatus[i].split(',')
+      if (station == stationId) {
+        if (!statusId) continue
+        statuses.push(splitStatusText(statustext[statusId]))
 
         // statusMsg += '<a href="http://tripplanner.mta.info/MyTrip/ui_web/customplanner/tripplanner.aspx" border=0 target=_blank><img border=0 src=images/TPLink.jpg></a>' + '</div>';
       }
@@ -245,7 +245,7 @@ class Station extends Component {
         </section>
 
         <section className="service-notice">
-          {this.renderStatusView(statuses, details)}
+          {this.renderStatusView(statuses)}
         </section>
       </Fragment>
     )

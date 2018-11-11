@@ -154,6 +154,7 @@ h3 {
   overflow-y: auto;
   flex: 1 1 auto;
   height: 400px; /* Required for overflow-y to work in Firefox */
+  padding-bottom: 1em;
 }
 
 .service-notice ul {
