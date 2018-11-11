@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
 import SubwayBullet from './SubwayBullet'
 import Icon from './Icon'

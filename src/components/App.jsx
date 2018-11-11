@@ -43,6 +43,7 @@ export default class App extends Component {
             <Route path="/station" exact component={StationList} />
             <Route path="/station/:station_id" component={Station} />
             <Route path="/line" exact component={LineView} />
+            <Route path="/line/:line_id" component={LineView} />
             <Route path="/legend" exact component={Legend} />
             <Route path="/" exact component={LandingView} />
           </div>
