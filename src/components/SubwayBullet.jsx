@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import './SubwayBullet.css'
+
 import IMG_SUBWAY_BULLET_1 from '../../node_modules/nyc-subway-icons/svg/1.svg'
 import IMG_SUBWAY_BULLET_2 from '../../node_modules/nyc-subway-icons/svg/2.svg'
 import IMG_SUBWAY_BULLET_3 from '../../node_modules/nyc-subway-icons/svg/3.svg'
@@ -105,20 +107,30 @@ paths['SIR'] = IMG_SUBWAY_BULLET_V_SIR
 
 const SubwayBullet = (props) => {
   const line = props.line.toUpperCase()
-  const className = (props.small) ? 'subway-bullet-small' : 'subway-bullet'
+
+  const className = ['subway-bullet']
+
+  if (props.small) {
+    className.push('subway-bullet-small')
+  }
+  if (props.large) {
+    className.push('subway-bullet-large')
+  }
 
   return (
-    <img className={className} src={paths[line]} alt={line} />
+    <img className={className.join(' ')} src={paths[line]} alt={line} />
   )
 }
 
 SubwayBullet.prototype.propTypes = {
   line: PropTypes.string.isRequired,
-  small: PropTypes.bool
+  small: PropTypes.bool,
+  large: PropTypes.bool
 }
 
 SubwayBullet.prototype.defaultProps = {
-  small: false
+  small: false,
+  large: false
 }
 
 export default SubwayBullet
