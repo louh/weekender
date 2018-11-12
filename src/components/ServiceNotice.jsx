@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import SubwayBullet from './SubwayBullet'
 import Icon from './Icon'
+import './ServiceNotice.css'
 
 /**
  * Given a string with bracket notation placeholders, e.g.
@@ -18,6 +19,18 @@ function replaceStringWithReactComponent (string) {
   const thing = array.map((item, i) => {
     if (item.match(/^{{.+}}$/)) {
       const line = item.replace('{{', '').replace('}}', '')
+
+      if (line.startsWith('link')) {
+        const pieces = line.split(' ')
+        const link = pieces[1]
+        const text = pieces.splice(2).join(' ')
+
+        return <a href={link} target="_blank" rel="noopener noreferrer">{text}</a>
+      } else if (line.startsWith('station')) {
+        const [unused, id, ...text] = line.split(' ')
+        return <a href={`/station/${id}`}>{text.join(' ')}</a>
+      }
+
       if (line === 'shuttle_bus') {
         return <Icon type="bus" key={i * 10} />
       } else if (line === 'isa') {
@@ -80,10 +93,34 @@ function transformStatusDetail (text) {
   // Replace accessibility symbol
   const phase1c = phase1b.replace(/<img src='images\/ADA_WhlChr_small.gif'\s*\/?>/g, '{{isa}}')
 
+  // Normalize things that look like links. Annotated regex:
+  //    `<a `           An open bracket, a tag followed by a space denotes the beginning of anchor tag.
+  //    `.*?`           Any other text can occur before href=
+  //    `href=`         Beginning of link-to URL (note this does not check for a space before href=)
+  //    `["']?`         URL may be surrounded by optional quotation marks
+  //    `([\w\d:/_.\-=?#]*)`  All acceptable characters used in URL (may be missing some), captured as group $1
+  //    `["']?`         Closing quotation marks: note this does not check for consistency with opening quote
+  //    `.*?`           Any other text that occurs after URL
+  //    `>`             Closing bracket
+  //    `(.*?)`         Contents of <a> tag, can be anything, and optional, captured as group $2
+  //    `<\/a>`         Closing </a> tag.
+  const phase1d = phase1c.replace(/<a .*?href=["']?([\w\d:/_.\-=?#]*)["']?.*?>(.*?)<\/a>/g, (match, p1, p2) => {
+    // Sometimes the text of the link has a <br> tag! We have to get rid of it.
+    const text = p2.replace(/<br>/g, '')
+
+    // If link matches a station ID, let's return a special tag
+    if (p1.includes('http://web.mta.info/weekender/tileMap.html?staID=')) {
+      const id = p1.split('=')
+      return `{{station ${id[1]} ${text}}}`
+    }
+
+    return `{{link ${p1} ${text}}}`
+  })
+
   // Special work with <br>
   // If string begins or ends with any amount of <br>, remove it
   // Otherwise surround it with | so it can be split on later
-  const phase2 = phase1c.replace(/^(<br>)*/, '').replace(/(<br>)*$/, '').replace(/<br>/g, '|<br>|')
+  const phase2 = phase1d.replace(/^(<br>)*/, '').replace(/(<br>)*$/, '').replace(/<br>/g, '|<br>|')
 
   // Replace images with bullet components
   const phase3 = replaceStringWithReactComponent(phase2)
