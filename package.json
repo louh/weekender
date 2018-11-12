@@ -23,6 +23,7 @@
     "react-router-dom": "4.3.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.1",
     "eslint": "5.8.0",
@@ -40,7 +41,8 @@
       "@babel/preset-react"
     ],
     "plugins": [
-      "@babel/plugin-proposal-class-properties"
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread"
     ]
   },
   "eslint": {

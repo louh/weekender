@@ -5,7 +5,7 @@ import Header from './Header'
 import Footer from './Footer'
 import StatusView from './StatusView'
 import StationList from './StationList'
-import Station from './Station'
+import StationView from './StationView'
 import LineView from './LineView'
 import Legend from './Legend'
 import LandingView from './LandingView'
@@ -41,7 +41,7 @@ export default class App extends Component {
           <div className="info-panel">
             <Route path="/status" exact component={StatusView} />
             <Route path="/station" exact component={StationList} />
-            <Route path="/station/:station_id" component={Station} />
+            <Route path="/station/:station_id" component={StationView} />
             <Route path="/line" exact component={LineView} />
             <Route path="/line/:line_id" component={LineView} />
             <Route path="/legend" exact component={Legend} />

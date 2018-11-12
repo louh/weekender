@@ -142,9 +142,9 @@ export default class LineView extends Component {
   }
 
   renderInteractiveStatus = (statuses) => {
-    return statuses.map(({ summary, details }, i) => (
-      <a href="" onClick={(e) => this.handleClickStatus(e, i)} key={i}>
-        <article className={(this.state.activeStatus === i) ? 'service-notice-active' : undefined} key={i}>
+    return statuses.map(({ summary, details, id }, i) => (
+      <a href="" onClick={(e) => this.handleClickStatus(e, i)} key={id}>
+        <article className={(this.state.activeStatus === i) ? 'service-notice-active' : undefined}>
           <p>
             {transformStatusSummary(summary)}
           </p>
@@ -229,7 +229,7 @@ export default class LineView extends Component {
       const [ line, unused, statusText ] = weekendroutestatus[i].split('||')
       if (line.toUpperCase() === lineId.toUpperCase()) {
         const text = splitStatusText(statusText)
-        statuses.push(text)
+        statuses.push({ id: i, ...text })
       }
     }
 

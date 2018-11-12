@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom'
 import SubwayBullet from './SubwayBullet'
 import Icon from './Icon'
 import STATIONS_LIST from '../stations'
-import './Station.css'
+import './StationView.css'
 
 function splitStatusText (text) {
   const split = text.split('$$')
@@ -102,7 +102,7 @@ function transformStatusDetail (text) {
   return phase3
 }
 
-class Station extends Component {
+class StationView extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
@@ -137,9 +137,9 @@ class Station extends Component {
   }
 
   renderInteractiveStatus = (statuses) => {
-    return statuses.map(({ summary, details }, i) => (
-      <a href="" onClick={(e) => this.handleClickStatus(e, i)} key={i}>
-        <article className={(this.state.activeStatus === i) ? 'service-notice-active' : undefined} key={i}>
+    return statuses.map(({ summary, details, id }, i) => (
+      <a href="" onClick={(e) => this.handleClickStatus(e, i)} key={id}>
+        <article className={(this.state.activeStatus === i) ? 'service-notice-active' : undefined}>
           <p>
             {transformStatusSummary(summary)}
           </p>
@@ -225,7 +225,9 @@ class Station extends Component {
       const [ statusId , unused, station ] = weekendstatus[i].split(',')
       if (station == stationId) {
         if (!statusId) continue
-        statuses.push(splitStatusText(statustext[statusId]))
+
+        const status = splitStatusText(statustext[statusId])
+        statuses.push({ id: statusId, ...status })
 
         // statusMsg += '<a href="http://tripplanner.mta.info/MyTrip/ui_web/customplanner/tripplanner.aspx" border=0 target=_blank><img border=0 src=images/TPLink.jpg></a>' + '</div>';
       }
@@ -252,4 +254,4 @@ class Station extends Component {
   }
 }
 
-export default withRouter(Station)
+export default withRouter(StationView)
