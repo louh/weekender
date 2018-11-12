@@ -52,7 +52,7 @@ function capitalizeFirstLetter (string) {
 function transformStatusSummary (text) {
   // Typography - should address variable whitespace
   // Also get rid of <br>
-  const phase1 = text.trim().replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*/g, '\u200a–\u200a').replace(/<br>/g, '')
+  const phase1 = text.trim().replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*(?!bound)/g, '\u200a–\u200a').replace(/<br>/g, '')
 
   // Replace image HTML with {{brackets}}
   const phase1b = phase1.replace(/<img src='images\/routes\/14px\//g, '{{').replace(/.(png|gif)' align='bottom' \/>/g, '}}')
@@ -82,7 +82,7 @@ function transformStatusSummary (text) {
 
 function transformStatusDetail (text) {
   // Typography - should address variable whitespace
-  const phase1 = text.trim().replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*/g, '\u200a–\u200a')
+  const phase1 = text.trim().replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*(?!bound)/g, '\u200a–\u200a')
 
   // Replace image HTML with {{brackets}}
   const phase1b = phase1.replace(/<img src='images\/routes\/14px\//g, '{{').replace(/.(png|gif)' align='bottom' \/>/g, '}}')
