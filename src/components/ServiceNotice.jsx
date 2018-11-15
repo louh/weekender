@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import SubwayBullet from './SubwayBullet'
 import Icon from './Icon'
 import './ServiceNotice.css'
@@ -28,7 +29,7 @@ function replaceStringWithReactComponent (string) {
         return <a href={link} target="_blank" rel="noopener noreferrer">{text}</a>
       } else if (line.startsWith('station')) {
         const [unused, id, ...text] = line.split(' ')
-        return <a href={`/station/${id}`}>{text.join(' ')}</a>
+        return <Link to={`/station/${id}`}>{text.join(' ')}</Link>
       }
 
       if (line === 'shuttle_bus') {
