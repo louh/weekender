@@ -1,0 +1,10 @@
+.borough-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}
+
+.borough-list > li:last-of-type {
+  margin-top: 1em;
+}

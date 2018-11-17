@@ -7,6 +7,7 @@ import StatusView from './StatusView'
 import StationList from './StationList'
 import StationView from './StationView'
 import LineView from './LineView'
+import BoroughView from './BoroughView'
 import Legend from './Legend'
 import LandingView from './LandingView'
 
@@ -44,6 +45,7 @@ export default class App extends Component {
             <Route path="/station/:station_id" component={StationView} />
             <Route path="/line" exact component={LineView} />
             <Route path="/line/:line_id" component={LineView} />
+            <Route path="/borough" exact component={BoroughView} />
             <Route path="/legend" exact component={Legend} />
             <Route path="/" exact component={LandingView} />
           </div>
