@@ -1,0 +1,13 @@
+.legend {
+  margin-top: 1em;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.legend td:first-of-type {
+  padding-right: 6px;
+}
+
+.legend td {
+  vertical-align: top;
+}
