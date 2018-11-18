@@ -6,3 +6,25 @@
   background-color: #ebf0f0;
   overflow: auto;
 }
+
+.line-diagram-dots {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.line-station-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+}
+
+.line-station-label {
+  position: absolute;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 15px;
+  cursor: default;
+}

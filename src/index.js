@@ -9,8 +9,13 @@ import App from './components/App'
 const FILES = [
   'https://s3.amazonaws.com/weekender-data/weekendstatus.js',
   'https://s3.amazonaws.com/weekender-data/weekendroutestatus.js',
-  'https://s3.amazonaws.com/weekender-data/weekendboroughstatus.js'
+  'https://s3.amazonaws.com/weekender-data/weekendboroughstatus.js',
+  'https://s3.amazonaws.com/weekender-data/LinesStaticData.js'
 ]
+
+if (!Number.parseInt) {
+  Number.parseInt = window.parseInt
+}
 
 function embedScript (url) {
   return new Promise((resolve, reject) => {
