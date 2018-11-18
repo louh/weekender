@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import './LineDiagram.css'
 
+import IMG_LINE_DIAGRAM_HOME from '../images/line_diagrams/home.png'
 import IMG_LINE_DIAGRAM_1 from '../images/line_diagrams/1.png'
 import IMG_LINE_DIAGRAM_2 from '../images/line_diagrams/2.png'
 import IMG_LINE_DIAGRAM_3 from '../images/line_diagrams/3.png'
@@ -132,7 +133,6 @@ export default class LineDiagram extends Component {
     })
   }
 
-
   handleMouseOverDot = (event) => {
     event.target.src = IMG_DOT_WHITE
     this.showStationInfo(event)
@@ -163,6 +163,8 @@ export default class LineDiagram extends Component {
     const lineArrayName = `line_${route}_Data`
     const lineStationData = window[lineArrayName]
     const dotEls = []
+
+    if (!lineStationData) return null
 
     for (let i = 0; i < lineStationData.length; i++) {
       if (lineStationData[i].split(',')[0] === 'X') continue
@@ -212,13 +214,13 @@ export default class LineDiagram extends Component {
               className="line-station-dot"
               src={imgSrc}
               style={{ top: yTopPoint, left: xLeftPoint }}
-              // onClick={() => ShowStatusMessage(this)}
               onMouseOver={this.handleMouseOverDot}
               onMouseOut={this.handleMouseOutDot}
               alt=""
               id={ctrlID}
               key={ctrlID}
               name={name}
+              draggable={false}
             />
           </Link>
         </li>
@@ -244,16 +246,30 @@ export default class LineDiagram extends Component {
     )
   }
 
+  renderBlankMap () {
+    return (
+      <div className="line-diagram">
+        <img src={IMG_LINE_DIAGRAM_HOME} alt="MTA system diagram" draggable={false} />
+      </div>
+    )
+  }
+
   render () {
     const lineId = this.props.match.params['line_id']
 
-    if (!lineId) return null
+    // If line is not provided, render blank map
+    if (!lineId) return this.renderBlankMap()
+
+    const line = lineId.toUpperCase()
+
+    // If line is not valid, render blank map
+    if (!paths[line]) return this.renderBlankMap()
 
     return (
       <div className="line-diagram">
         {this.renderDots(lineId)}
         {this.renderStationName()}
-        <img src={paths[lineId.toUpperCase()]} />
+        <img src={paths[line]} alt={`${line} line diagram`} draggable={false} />
       </div>
     )
   }

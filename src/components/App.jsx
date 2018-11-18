@@ -51,6 +51,7 @@ export default class App extends Component {
             <Route path="/" exact component={LandingView} />
           </div>
           <div className="map-container">
+            <Route path="/line/" exact component={LineDiagram} />
             <Route path="/line/:line_id" component={LineDiagram} />
             <div id="map"></div>
             {/*<!-- <div className="static-map">
