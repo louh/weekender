@@ -97,8 +97,8 @@ export default class LineDiagram extends Component {
         divTopOffSetPoint = -1
         break
       case 'T': // Top
-        divLeftOffsetPoint = 350
-        divTopOffSetPoint = -1
+        divLeftOffsetPoint = 347
+        divTopOffSetPoint = 10
         break
       case 'B': // Bottom
         divLeftOffsetPoint = 328
