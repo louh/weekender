@@ -84,6 +84,7 @@ main {
 }
 
 .map-container {
+  position: relative;
   background-color: #ebf0f0;
   flex: 1;
 }

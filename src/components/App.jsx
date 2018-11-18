@@ -7,6 +7,7 @@ import StatusView from './StatusView'
 import StationList from './StationList'
 import StationView from './StationView'
 import LineView from './LineView'
+import LineDiagram from './LineDiagram'
 import BoroughView from './BoroughView'
 import Legend from './Legend'
 import LandingView from './LandingView'
@@ -50,6 +51,7 @@ export default class App extends Component {
             <Route path="/" exact component={LandingView} />
           </div>
           <div className="map-container">
+            <Route path="/line/:line_id" component={LineDiagram} />
             <div id="map"></div>
             {/*<!-- <div className="static-map">
               <img src="./images/station_view.png">
