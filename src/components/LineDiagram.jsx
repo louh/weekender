@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import './LineDiagram.css'
 
-import IMG_LINE_DIAGRAM_HOME from '../images/line_diagrams/home.png'
 import IMG_LINE_DIAGRAM_1 from '../images/line_diagrams/1.png'
 import IMG_LINE_DIAGRAM_2 from '../images/line_diagrams/2.png'
 import IMG_LINE_DIAGRAM_3 from '../images/line_diagrams/3.png'
@@ -247,11 +246,7 @@ export default class LineDiagram extends Component {
   }
 
   renderBlankMap () {
-    return (
-      <div className="line-diagram">
-        <img src={IMG_LINE_DIAGRAM_HOME} alt="MTA system diagram" draggable={false} />
-      </div>
-    )
+    return <div className="line-diagram" />
   }
 
   render () {

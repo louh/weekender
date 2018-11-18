@@ -4,6 +4,8 @@
   width: 100%;
   height: 100%;
   background-color: #ebf0f0;
+  background-image: url('../images/line_diagrams/home.png');
+  background-repeat: no-repeat;
   overflow: auto;
 }
 
