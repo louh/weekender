@@ -29,3 +29,7 @@
 .nav-right ul li {
   display: inline-block;
 }
+
+.nav-active {
+  color: white !important;
+}
