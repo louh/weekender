@@ -26,7 +26,8 @@ function replaceStringWithReactComponent (string) {
         const link = pieces[1]
         const text = pieces.splice(2).join(' ')
 
-        return <a href={link} target="_blank" rel="noopener noreferrer">{text}</a>
+        // Link must stop propagation to prevent parent onClick handler from preventing navigation.
+        return <a href={link} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.stopPropagation() }}>{text}</a>
       } else if (line.startsWith('station')) {
         const [unused, id, ...text] = line.split(' ')
         return <Link to={`/station/${id}`}>{text.join(' ')}</Link>
@@ -76,7 +77,11 @@ function transformStatusSummary (text) {
   phase2[0] = <strong key={0}>{capitalizeFirstLetter(phase2[0].toLowerCase())}</strong>
 
   // Replace images with bullet components
-  phase2[phase2.length - 1] = replaceStringWithReactComponent(phase2[phase2.length - 1])
+  for (let i = 0; i < phase2.length; i++) {
+    if (typeof phase2[i] === 'string') {
+      phase2[i] = replaceStringWithReactComponent(phase2[i])
+    }
+  }
 
   // Original appends "more" to the end
   // phase2.push(' ... more')
@@ -136,18 +141,51 @@ export default class ServiceNotice extends Component {
       summary: PropTypes.string,
       details: PropTypes.string
     }),
-    active: PropTypes.bool
+    active: PropTypes.bool,
+    togglable: PropTypes.bool
   }
 
   static defaultProps = {
-    active: false
+    active: true,
+    togglable: false
+  }
+
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      isActive: props.active
+    }
+  }
+
+  handleClick = (event) => {
+    event.preventDefault()
+
+    // Toggles active state
+    if (this.props.togglable) {
+      this.setState({
+        isActive: !this.state.isActive
+      })
+    }
   }
 
   render () {
-    const { status, active } = this.props
+    const { status } = this.props
+    const { isActive } = this.state
+    
+    const classNames = []
+    if (isActive) {
+      classNames.push('service-notice-active')
+    }
+    if (this.props.togglable) {
+      classNames.push('service-notice-interactive')
+    }
 
     return (
-      <article className={(active === true) ? 'service-notice-active' : undefined}>
+      <article
+        className={classNames.join(' ')}
+        onClick={this.handleClick}
+      >
         <p>
           {transformStatusSummary(status.summary)}
         </p>

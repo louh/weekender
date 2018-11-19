@@ -21,38 +21,13 @@ class StationView extends Component {
     history: PropTypes.object.isRequired
   }
 
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      activeStatus: null
-    }
-  }
-
-  handleClickStatus = (event, id) => {
-    event.preventDefault()
-
-    // Toggles active state
-    if (id === this.state.activeStatus) {
-      this.setState({
-        activeStatus: null
-      })
-    } else {
-      this.setState({
-        activeStatus: id
-      })
-    }
-  }
-
   renderBullets = (bullets) => {
     return bullets.map((line) => <SubwayBullet line={line} small key={line} />)
   }
 
   renderInteractiveStatus = (statuses) => {
     return statuses.map(({ id, ...status }, i) => (
-      <a href="" onClick={(e) => this.handleClickStatus(e, i)} key={id}>
-        <ServiceNotice status={status} active={(this.state.activeStatus === i)} />
-      </a>
+      <ServiceNotice key={id} status={status} active={false} togglable={true} />
     ))
   }
 

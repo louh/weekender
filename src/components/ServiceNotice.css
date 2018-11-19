@@ -70,6 +70,11 @@
   margin-top: 3px;
 }
 
+.service-notice-interactive {
+  color: #666;
+  cursor: pointer;
+}
+
 .service-notice-active {
   border-top: 1px solid black !important;
   color: black;
