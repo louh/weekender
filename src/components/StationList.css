@@ -120,3 +120,8 @@
   margin-right: 2px;
   vertical-align: sub; /* force visual middle alignment */
 }
+
+.station-list-empty {
+  /* Match list item placement */
+  margin-top: 2px;
+}

@@ -28,10 +28,10 @@ export class StationList extends Component {
     return bullets.map((line) => <SubwayBullet line={line} small key={line} />)
   }
 
-  renderStationList = (getItemProps, highlightedIndex, selectedItem, inputValue) => {
+  renderStationList = (getMenuProps, getItemProps, highlightedIndex, selectedItem, inputValue) => {
     // Display the whole list if there's no filter input
     // Otherwise filter the list based on input
-    return STATIONS_LIST
+    const list = STATIONS_LIST
       .filter((station) => !inputValue || station.label.toLowerCase().includes(inputValue))
       .map((station, index) => (
         <li {...getItemProps({
@@ -50,6 +50,14 @@ export class StationList extends Component {
           </Link>
         </li>
       ))
+
+    if (list.length > 0) return (
+      <ul className="station-list" {...getMenuProps()}>
+        {list}
+      </ul>
+    )
+
+    return <p className="station-list-empty"><strong>No stations found.</strong></p>
   }
 
   /**
@@ -87,9 +95,7 @@ export class StationList extends Component {
               </div>
 
               <div className="station-list-container">
-                <ul className="station-list" {...getMenuProps()}>
-                  {this.renderStationList(getItemProps, highlightedIndex, selectedItem, inputValue)}
-                </ul>
+                {this.renderStationList(getMenuProps, getItemProps, highlightedIndex, selectedItem, inputValue)}
               </div>
             </div>
           )}
