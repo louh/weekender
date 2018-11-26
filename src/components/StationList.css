@@ -1,3 +1,9 @@
+.search-container {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
 .search-input {
   display: flex;
   position: relative;
@@ -97,8 +103,12 @@
   display: inline-block;
 }
 
-.station-list li:hover {
-  background-color: #f3f2ee;
+.station-list li.is-highlighted {
+  background-color: #f8f7f2;
+}
+
+.station-list li.is-highlighted a {
+  color: black;
 }
 
 .station-list-label {

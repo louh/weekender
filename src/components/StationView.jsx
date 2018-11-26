@@ -83,7 +83,7 @@ class StationView extends Component {
 
   render () {
     const stationId = Number.parseInt(this.props.match.params.station_id, 10)
-    const station = STATIONS_LIST.get(stationId)
+    const station = STATIONS_LIST.filter((station) => station.id === stationId)[0]
 
     // If station isn't found, bail and render error
     if (typeof station === 'undefined') {
@@ -98,7 +98,7 @@ class StationView extends Component {
         if (!statusId) continue
 
         const status = splitStatusText(statustext[statusId])
-        statuses.push({ id: statusId, ...status })
+        statuses.push({ id: Number.parseInt(statusId, 10), ...status })
 
         // statusMsg += '<a href="http://tripplanner.mta.info/MyTrip/ui_web/customplanner/tripplanner.aspx" border=0 target=_blank><img border=0 src=images/TPLink.jpg></a>' + '</div>';
       }
