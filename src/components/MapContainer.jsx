@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom'
 import L from 'leaflet'
 import LineDiagram from './LineDiagram'
 import BoroughStatus from './BoroughStatus'
+
+import '../../node_modules/leaflet/dist/leaflet.css'
 import './MapContainer.css'
 
 export default class MapContainer extends Component {

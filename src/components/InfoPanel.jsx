@@ -7,6 +7,7 @@ import LineView from './LineView'
 import BoroughView from './BoroughView'
 import Legend from './Legend'
 import LandingView from './LandingView'
+import './InfoPanel.css'
 
 export default class InfoPanel extends Component {
   state = {

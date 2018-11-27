@@ -1,0 +1,69 @@
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: rgb(234, 232, 225);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+#app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  width: 100%;
+  height: 84px;
+  flex: 0 0 84px;
+}
+
+footer {
+  width: 100%;
+  height: 20px;
+  flex: 0 0 20px;
+}
+
+header,
+footer {
+  font-family: Helvetica, 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: -0.01em;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+}
+
+header a,
+header a:active,
+header a:visited,
+footer a,
+footer a:active,
+footer a:visited {
+  color: #999;
+  text-decoration: none;
+}
+
+header a:hover,
+footer a:hover {
+  color: white;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
