@@ -1,5 +1,5 @@
 /* for error message */
-.map-container h2 {
+.map-container-error > h2 {
   margin-left: 5px;
   margin-top: 5px;
 }

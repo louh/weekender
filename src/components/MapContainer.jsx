@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import L from 'leaflet'
 import LineDiagram from './LineDiagram'
+import BoroughStatus from './BoroughStatus'
 import './MapContainer.css'
 
 export default class MapContainer extends Component {
@@ -50,7 +51,7 @@ export default class MapContainer extends Component {
   render () {
     if (this.state.hasError) {
       return (
-        <div className="map-container">
+        <div className="map-container map-container-error">
           <h2>An error occurred <span className="heading-instructions">Try reloading the page</span></h2>
         </div>
       )
@@ -60,6 +61,8 @@ export default class MapContainer extends Component {
       <div className="map-container">
         <Route path="/line/" exact component={LineDiagram} />
         <Route path="/line/:line_id" component={LineDiagram} />
+        <Route path="/borough/" component={BoroughStatus} />
+        <Route path="/borough/:borough_id" component={BoroughStatus} />
         <div id="map" ref={this.mapEl} />
         {/*<!-- <div className="static-map">
           <img src="./images/station_view.png">

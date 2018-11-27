@@ -38,6 +38,7 @@ export default class InfoPanel extends Component {
         <Route path="/line" exact component={LineView} />
         <Route path="/line/:line_id" component={LineView} />
         <Route path="/borough" exact component={BoroughView} />
+        <Route path="/borough/:borough_id" exact component={BoroughView} />
         <Route path="/legend" exact component={Legend} />
         <Route path="/" exact component={LandingView} />
       </div>
