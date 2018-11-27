@@ -113,7 +113,7 @@ class StationView extends Component {
         <hr />
 
         <section>
-          <h3>{station.label}</h3>
+          <h3 className="station-label">{station.label}</h3>
           <span className="station-bullets">{this.renderBullets(station.lines)}</span>
         </section>
 

@@ -6,3 +6,7 @@
 .station-bullets .subway-bullet-small {
   margin-right: 2px;
 }
+
+.station-label {
+  font-size: 14px;
+}
