@@ -27,10 +27,10 @@ function replaceStringWithReactComponent (string) {
         const text = pieces.splice(2).join(' ')
 
         // Link must stop propagation to prevent parent onClick handler from preventing navigation.
-        return <a href={link} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.stopPropagation() }}>{text}</a>
+        return <a href={link} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.stopPropagation() }} key={i * 10}>{text}</a>
       } else if (line.startsWith('station')) {
         const [unused, id, ...text] = line.split(' ')
-        return <Link to={`/station/${id}`}>{text.join(' ')}</Link>
+        return <Link to={`/station/${id}`} key={i * 10}>{text.join(' ')}</Link>
       }
 
       if (line === 'shuttle_bus') {

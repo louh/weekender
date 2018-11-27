@@ -207,7 +207,7 @@ export default class LineDiagram extends Component {
       }
 
       const statusIcon = (
-        <li>
+        <li key={ctrlID}>
           <Link to={`/station/${lineIndex}`}>
             <img
               className="line-station-dot"
@@ -217,7 +217,6 @@ export default class LineDiagram extends Component {
               onMouseOut={this.handleMouseOutDot}
               alt=""
               id={ctrlID}
-              key={ctrlID}
               name={name}
               draggable={false}
             />
