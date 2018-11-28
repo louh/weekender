@@ -173,7 +173,7 @@ export default class ServiceNotice extends Component {
     const { status } = this.props
     const { isActive } = this.state
     
-    const classNames = []
+    const classNames = ['service-notice']
     if (isActive) {
       classNames.push('service-notice-active')
     }

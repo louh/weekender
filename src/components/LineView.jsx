@@ -3,15 +3,8 @@ import PropTypes from 'prop-types'
 import SubwayLineSelector from './SubwayLineSelector'
 import ServiceNotice from './ServiceNotice'
 import SubwayBullet from './SubwayBullet'
+import { splitStatusText } from '../utils/parser'
 import './LineView.css'
-
-function splitStatusText (text) {
-  const split = text.split('$$')
-  return {
-    summary: split[0],
-    details: split[1]
-  }
-}
 
 export default class LineView extends Component {
   static propTypes = {
@@ -112,7 +105,7 @@ export default class LineView extends Component {
             <SubwayBullet line={lineId} large />
           </h3>
         </section>
-        <section className="service-notice">
+        <section className="service-notice-container">
           {this.renderStatusView(statuses)}
         </section>
       </Fragment>

@@ -4,15 +4,8 @@ import { Link, withRouter } from 'react-router-dom'
 import ServiceNotice from './ServiceNotice'
 import SubwayBullet from './SubwayBullet'
 import STATIONS_LIST from '../stations'
+import { splitStatusText } from '../utils/parser'
 import './StationView.css'
-
-function splitStatusText (text) {
-  const split = text.split('$$')
-  return {
-    summary: split[0],
-    details: split[1]
-  }
-}
 
 class StationView extends Component {
   static propTypes = {
@@ -117,7 +110,7 @@ class StationView extends Component {
           <span className="station-bullets">{this.renderBullets(station.lines)}</span>
         </section>
 
-        <section className="service-notice">
+        <section className="service-notice-container">
           {this.renderStatusView(statuses)}
         </section>
       </Fragment>
