@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { SettingsContext } from './App'
 
 import './SubwayBullet.css'
 
@@ -52,58 +53,59 @@ import IMG_SUBWAY_BULLET_V_Z from '../images/vignelli_bullets/z.svg'
 import IMG_SUBWAY_BULLET_V_G from '../images/vignelli_bullets/g.svg'
 import IMG_SUBWAY_BULLET_V_SIR from '../images/vignelli_bullets/sir.svg'
 
-const paths = {}
 // Official color scheme
-// paths['1'] = IMG_SUBWAY_BULLET_1
-// paths['2'] = IMG_SUBWAY_BULLET_2
-// paths['3'] = IMG_SUBWAY_BULLET_3
-// paths['4'] = IMG_SUBWAY_BULLET_4
-// paths['5'] = IMG_SUBWAY_BULLET_5
-// paths['6'] = IMG_SUBWAY_BULLET_6
-// paths['7'] = IMG_SUBWAY_BULLET_7
-// paths['A'] = IMG_SUBWAY_BULLET_A
-// paths['C'] = IMG_SUBWAY_BULLET_C
-// paths['E'] = IMG_SUBWAY_BULLET_E
-// paths['L'] = IMG_SUBWAY_BULLET_L
-// paths['S'] = IMG_SUBWAY_BULLET_S
-// paths['B'] = IMG_SUBWAY_BULLET_B
-// paths['D'] = IMG_SUBWAY_BULLET_D
-// paths['F'] = IMG_SUBWAY_BULLET_F
-// paths['M'] = IMG_SUBWAY_BULLET_M
-// paths['N'] = IMG_SUBWAY_BULLET_N
-// paths['Q'] = IMG_SUBWAY_BULLET_Q
-// paths['R'] = IMG_SUBWAY_BULLET_R
-// paths['W'] = IMG_SUBWAY_BULLET_W
-// paths['J'] = IMG_SUBWAY_BULLET_J
-// paths['Z'] = IMG_SUBWAY_BULLET_Z
-// paths['G'] = IMG_SUBWAY_BULLET_G
-// paths['SIR'] = IMG_SUBWAY_BULLET_SIR
+const official = {}
+official['1'] = IMG_SUBWAY_BULLET_1
+official['2'] = IMG_SUBWAY_BULLET_2
+official['3'] = IMG_SUBWAY_BULLET_3
+official['4'] = IMG_SUBWAY_BULLET_4
+official['5'] = IMG_SUBWAY_BULLET_5
+official['6'] = IMG_SUBWAY_BULLET_6
+official['7'] = IMG_SUBWAY_BULLET_7
+official['A'] = IMG_SUBWAY_BULLET_A
+official['C'] = IMG_SUBWAY_BULLET_C
+official['E'] = IMG_SUBWAY_BULLET_E
+official['L'] = IMG_SUBWAY_BULLET_L
+official['S'] = IMG_SUBWAY_BULLET_S
+official['B'] = IMG_SUBWAY_BULLET_B
+official['D'] = IMG_SUBWAY_BULLET_D
+official['F'] = IMG_SUBWAY_BULLET_F
+official['M'] = IMG_SUBWAY_BULLET_M
+official['N'] = IMG_SUBWAY_BULLET_N
+official['Q'] = IMG_SUBWAY_BULLET_Q
+official['R'] = IMG_SUBWAY_BULLET_R
+official['W'] = IMG_SUBWAY_BULLET_W
+official['J'] = IMG_SUBWAY_BULLET_J
+official['Z'] = IMG_SUBWAY_BULLET_Z
+official['G'] = IMG_SUBWAY_BULLET_G
+official['SIR'] = IMG_SUBWAY_BULLET_SIR
 
 // Alternative: Vignelli color scheme bullets
-paths['1'] = IMG_SUBWAY_BULLET_V_1
-paths['2'] = IMG_SUBWAY_BULLET_V_2
-paths['3'] = IMG_SUBWAY_BULLET_V_3
-paths['4'] = IMG_SUBWAY_BULLET_V_4
-paths['5'] = IMG_SUBWAY_BULLET_V_5
-paths['6'] = IMG_SUBWAY_BULLET_V_6
-paths['7'] = IMG_SUBWAY_BULLET_V_7
-paths['A'] = IMG_SUBWAY_BULLET_V_A
-paths['C'] = IMG_SUBWAY_BULLET_V_C
-paths['E'] = IMG_SUBWAY_BULLET_V_E
-paths['L'] = IMG_SUBWAY_BULLET_V_L
-paths['S'] = IMG_SUBWAY_BULLET_V_S
-paths['B'] = IMG_SUBWAY_BULLET_V_B
-paths['D'] = IMG_SUBWAY_BULLET_V_D
-paths['F'] = IMG_SUBWAY_BULLET_V_F
-paths['M'] = IMG_SUBWAY_BULLET_V_M
-paths['N'] = IMG_SUBWAY_BULLET_V_N
-paths['Q'] = IMG_SUBWAY_BULLET_V_Q
-paths['R'] = IMG_SUBWAY_BULLET_V_R
-paths['W'] = IMG_SUBWAY_BULLET_V_W
-paths['J'] = IMG_SUBWAY_BULLET_V_J
-paths['Z'] = IMG_SUBWAY_BULLET_V_Z
-paths['G'] = IMG_SUBWAY_BULLET_V_G
-paths['SIR'] = IMG_SUBWAY_BULLET_V_SIR
+const vignelli = {}
+vignelli['1'] = IMG_SUBWAY_BULLET_V_1
+vignelli['2'] = IMG_SUBWAY_BULLET_V_2
+vignelli['3'] = IMG_SUBWAY_BULLET_V_3
+vignelli['4'] = IMG_SUBWAY_BULLET_V_4
+vignelli['5'] = IMG_SUBWAY_BULLET_V_5
+vignelli['6'] = IMG_SUBWAY_BULLET_V_6
+vignelli['7'] = IMG_SUBWAY_BULLET_V_7
+vignelli['A'] = IMG_SUBWAY_BULLET_V_A
+vignelli['C'] = IMG_SUBWAY_BULLET_V_C
+vignelli['E'] = IMG_SUBWAY_BULLET_V_E
+vignelli['L'] = IMG_SUBWAY_BULLET_V_L
+vignelli['S'] = IMG_SUBWAY_BULLET_V_S
+vignelli['B'] = IMG_SUBWAY_BULLET_V_B
+vignelli['D'] = IMG_SUBWAY_BULLET_V_D
+vignelli['F'] = IMG_SUBWAY_BULLET_V_F
+vignelli['M'] = IMG_SUBWAY_BULLET_V_M
+vignelli['N'] = IMG_SUBWAY_BULLET_V_N
+vignelli['Q'] = IMG_SUBWAY_BULLET_V_Q
+vignelli['R'] = IMG_SUBWAY_BULLET_V_R
+vignelli['W'] = IMG_SUBWAY_BULLET_V_W
+vignelli['J'] = IMG_SUBWAY_BULLET_V_J
+vignelli['Z'] = IMG_SUBWAY_BULLET_V_Z
+vignelli['G'] = IMG_SUBWAY_BULLET_V_G
+vignelli['SIR'] = IMG_SUBWAY_BULLET_V_SIR
 
 const SubwayBullet = (props) => {
   const line = props.line.toUpperCase()
@@ -118,7 +120,15 @@ const SubwayBullet = (props) => {
   }
 
   return (
-    <img className={className.join(' ')} src={paths[line]} alt={line} />
+    <SettingsContext.Consumer>
+      {({ SUBWAY_BULLET_OFFICIAL_COLORS }) => {
+        if (SUBWAY_BULLET_OFFICIAL_COLORS) {
+          return <img className={className.join(' ')} src={official[line]} alt={line} />
+        }
+
+        return <img className={className.join(' ')} src={vignelli[line]} alt={line} />
+      }}
+    </SettingsContext.Consumer>
   )
 }
 
