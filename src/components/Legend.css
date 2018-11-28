@@ -9,5 +9,22 @@
 }
 
 .legend td {
+  position: relative;
   vertical-align: top;
+}
+
+/* Align labels to left edge
+  TODO: make this permanent in the image itself and remove CSS tweak? */
+img.legend-station-label {
+  margin-left: -8px;
+  margin-right: 8px;
+}
+
+.easter-egg-trigger {
+  position: absolute;
+  top: 3px;
+  left: 18px;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
 }
