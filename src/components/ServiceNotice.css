@@ -4,6 +4,7 @@
   flex: 1 1 auto;
   height: 400px; /* Required for overflow-y to work in Firefox */
   padding-bottom: 1em;
+  margin-bottom: 3px; /* Separation from footer implies scrollability */
 }
 
 .service-notice ul {
@@ -15,16 +16,6 @@
   margin-bottom: 1em;
   margin-top: 2em;
   line-height: 1.4;
-}
-
-.service-notice a {
-  display: block; /* Mouse hovers over entire block, not just text */
-  text-decoration: none;
-  color: #666;
-}
-
-.service-notice a:hover {
-  color: black;
 }
 
 .service-notice li img {
@@ -43,10 +34,10 @@
   margin-bottom: 0;
 }
 
-.service-notice-details > a {
+.service-notice-details a {
   display: inline;
-  color: blue;
-  text-decoration: underline;
+  color: blue !important;
+  text-decoration: underline !important;
 }
 
 .service-notice-active .service-notice-details {

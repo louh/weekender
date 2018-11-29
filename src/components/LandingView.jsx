@@ -15,7 +15,7 @@ export default class LandingView extends Component {
 
           <p>The Weekender is your (unofficial) guide to understanding planned service changes in effect for system maintenance and construction on NYC’s subway system.</p>
             
-          <p>This is not an official production of the MTA, but a fan remaster of <a href="http://web.mta.info/weekender.html" target="_blank" rel="noopener noferrer">the original Weekender</a>.</p>
+          <p>This is not an official production of the MTA. This is a fan-made high-definition remaster of <a href="http://web.mta.info/weekender.html" target="_blank" rel="noopener noferrer">the original Weekender</a>.</p>
         </section>
       </Fragment>
     )
