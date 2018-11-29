@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import { SettingsContext } from './App'
 import StatusView from './StatusView'
 import StationList from './StationList'
 import StationView from './StationView'
@@ -7,6 +8,7 @@ import LineView from './LineView'
 import BoroughView from './BoroughView'
 import Legend from './Legend'
 import LandingView from './LandingView'
+import SettingsPanel from './SettingsPanel'
 import './InfoPanel.css'
 
 export default class InfoPanel extends Component {
@@ -42,6 +44,9 @@ export default class InfoPanel extends Component {
         <Route path="/borough/:borough_id" exact component={BoroughView} />
         <Route path="/legend" exact component={Legend} />
         <Route path="/" exact component={LandingView} />
+        <SettingsContext.Consumer>
+          {({ settingsVisible }) => settingsVisible && <SettingsPanel />}
+        </SettingsContext.Consumer>
       </div>
     )
   }

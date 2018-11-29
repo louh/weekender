@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { SettingsContext } from './App'
 import './Footer.css'
 
 export default class Footer extends React.Component {
@@ -60,11 +61,15 @@ export default class Footer extends React.Component {
         <div className="footer-middle">
           {this.renderWeekendDates()}
         </div>
-        <div className="footer-right hidden">
-          <a href="http://web.mta.info/faqs.htm" target="_blank" rel="noopener noreferrer">
-            Tell us what you think
-          </a>
-        </div>
+        <SettingsContext.Consumer>
+          {({ FULL_UI }) => (
+            <div className={`footer-right ${ FULL_UI || 'hidden'}`}>
+              <a href="http://web.mta.info/faqs.htm" target="_blank" rel="noopener noreferrer">
+                Tell us what you think
+              </a>
+            </div>
+          )}
+        </SettingsContext.Consumer>
       </footer>
     )
   }

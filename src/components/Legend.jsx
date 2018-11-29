@@ -1,4 +1,5 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment } from 'react'
+import { SettingsContext } from './App'
 import './Legend.css'
 
 import LEGEND_STOP from '../images/legend/subway_stop.svg'
@@ -68,11 +69,15 @@ const Legend = (props) => (
                 height={10}
                 alt="Line with flashing stop 'dot'"
               />
-              <div
-                className="easter-egg-trigger"
-                aria-hidden={true}
-                onClick={(e) => console.log('Gem Activated')}
-              />
+              <SettingsContext.Consumer>
+                {({ toggleSettingsScreen }) => (
+                  <div
+                    className="easter-egg-trigger"
+                    aria-hidden={true}
+                    onClick={toggleSettingsScreen}
+                  />
+                )}
+              </SettingsContext.Consumer>
             </td>
             <td>Planned work</td>
           </tr>

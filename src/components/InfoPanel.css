@@ -1,4 +1,5 @@
 .info-panel {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 330px;
@@ -8,8 +9,9 @@
   line-height: 1.4;
 }
 
-.info-panel > :first-child {
-  margin-top: 5px;
+.info-panel > h2:first-child,
+.info-panel > h3:first-child {
+    margin-top: 5px;
 }
 
 .info-panel > h2 {
