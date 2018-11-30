@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Downshift from 'downshift'
 import SearchIcon from './SearchIcon'
 import SubwayBullet from './SubwayBullet'
@@ -8,12 +7,6 @@ import STATIONS_LIST from '../stations'
 import './StationList.css'
 
 export class StationList extends Component {
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  }
-
   constructor (props) {
     super(props)
 
@@ -68,19 +61,22 @@ export class StationList extends Component {
       <Fragment>
         <h2>All stations <span className="heading-instructions">Select one for details</span></h2>
 
-        <Downshift
-          onChange={(station) => this.props.history.push(`/station/${station.id}`)}
-          itemToString={(station) => (station && station.label) || ''}
-        >
+        <Downshift itemToString={(station) => (station && station.label) || ''}>
           {({
             getInputProps,
             getItemProps,
             getLabelProps,
             getMenuProps,
+            getRootProps,
             inputValue,
             highlightedIndex,
             selectedItem,
           }) => (
+            // When an item is selected, render a <Redirect /> in order to navigate to that station
+            // <Redirect /> needs to push a new history entry, not override the current one
+            selectedItem && <Redirect push to={`/station/${selectedItem.id}`} {...getRootProps({refKey: 'innerRef'})} />
+          ) || (
+            // Otherwise, render the filter list.
             <div className="search-container">
               <div className="search-input">
                 <label className="search-input-label" {...getLabelProps()}>
@@ -106,4 +102,4 @@ export class StationList extends Component {
   }
 }
 
-export default withRouter(StationList)
+export default StationList
