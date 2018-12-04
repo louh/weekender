@@ -4,6 +4,7 @@ import Downshift from 'downshift'
 import SearchIcon from './SearchIcon'
 import SubwayBullet from './SubwayBullet'
 import STATIONS_LIST from '../stations'
+import { setInitialView } from '../map'
 import './StationList.css'
 
 export class StationList extends Component {
@@ -15,6 +16,7 @@ export class StationList extends Component {
 
   componentDidMount () {
     this.inputEl.current.focus()
+    setInitialView()
   }
 
   renderBullets = (bullets) => {

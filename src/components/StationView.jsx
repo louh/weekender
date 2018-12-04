@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
+import { setMapViewToRasterCoords } from '../map'
 import ServiceNotice from './ServiceNotice'
 import SubwayBullet from './SubwayBullet'
 import STATIONS_LIST from '../stations'
@@ -12,6 +13,15 @@ class StationView extends Component {
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
+  }
+
+  componentDidMount () {
+    /* global stationMapCoordinates */
+    const stationId = Number.parseInt(this.props.match.params.station_id, 10)
+    const coordData = stationMapCoordinates[stationId].split(',')
+    const x = Number.parseInt(coordData[0], 10)
+    const y = Number.parseInt(coordData[1], 10)
+    setMapViewToRasterCoords(x, y, 5)
   }
 
   renderBullets = (bullets) => {
@@ -92,8 +102,6 @@ class StationView extends Component {
 
         const status = splitStatusText(statustext[statusId])
         statuses.push({ id: Number.parseInt(statusId, 10), ...status })
-
-        // statusMsg += '<a href="http://tripplanner.mta.info/MyTrip/ui_web/customplanner/tripplanner.aspx" border=0 target=_blank><img border=0 src=images/TPLink.jpg></a>' + '</div>';
       }
     }
 
