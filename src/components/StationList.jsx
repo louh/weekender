@@ -27,7 +27,7 @@ export class StationList extends Component {
     // Display the whole list if there's no filter input
     // Otherwise filter the list based on input
     const list = STATIONS_LIST
-      .filter((station) => !inputValue || station.label.toLowerCase().includes(inputValue))
+      .filter((station) => !inputValue || station.label.toLowerCase().includes(inputValue.toLowerCase()))
       .map((station, index) => (
         <li {...getItemProps({
           key: station.id,
