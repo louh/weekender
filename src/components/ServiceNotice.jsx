@@ -74,7 +74,7 @@ function transformStatusSummary (text) {
   }
 
   // Turn title into bold text
-  phase2[0] = <strong key={0}>{capitalizeFirstLetter(phase2[0].toLowerCase())}</strong>
+  phase2[0] = <h3 key={0}>{capitalizeFirstLetter(phase2[0].toLowerCase())}</h3>
 
   // Replace images with bullet components
   for (let i = 0; i < phase2.length; i++) {
@@ -139,7 +139,23 @@ function transformStatusDetail (text) {
 
   // If the final details are empty, replace with a placeholder stating that
   // no additional details are available.
-  const final = (phase3 && !phase3[0]) ? <em>No additional details.</em> : phase3
+  const final = (phase3 && !phase3[0]) ? [<em>No additional details.</em>] : phase3
+
+  // Add TripPlanner+ link
+  final.push(
+    <p>
+      <a
+        href="http://tripplanner.mta.info/MyTrip/ui_web/customplanner/tripplanner.aspx"
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={(e) => {
+          e.stopPropagation()
+        }}
+      >
+        Get me around this work with TripPlanner+
+      </a>
+    </p>
+  )
 
   return final
 }
@@ -203,13 +219,15 @@ export default class ServiceNotice extends Component {
         className={classNames.join(' ')}
         onClick={this.handleClick}
       >
-        <p>
-          {transformStatusSummary(status.summary)}
-        </p>
+        <div>
+          <p>
+            {transformStatusSummary(status.summary)}
+          </p>
+        </div>
 
-        <p className="service-notice-details">
+        <div className="service-notice-details">
           {transformStatusDetail(status.details)}
-        </p>
+        </div>
       </article>
     )
   }

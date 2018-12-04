@@ -18,12 +18,12 @@
   line-height: 1.4;
 }
 
-.service-notice li img {
+.service-notice img {
   vertical-align: text-bottom;
 }
 
-.service-notice p img {
-  vertical-align: text-bottom;
+.service-notice p:first-child {
+  margin-top: 2px;
 }
 
 .service-notice-details {
