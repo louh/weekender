@@ -11,3 +11,36 @@
 .borough-status-container .info-panel {
   padding-left: 0;
 }
+
+.borough-status-selector .service-notice {
+  cursor: pointer;
+  color: #666;
+}
+
+.borough-status-selector .service-notice:hover {
+  color: inherit;
+}
+
+.borough-status-selector .service-notice-active {
+  color: black;
+}
+
+.borough-status-selector .service-notice-active .service-notice-details {
+  display: none;
+}
+
+.borough-status-details .service-notice {
+  border-top: 0 !important;
+  margin-top: 0;
+}
+
+.borough-status-details .service-notice-active {
+  border-top: 0 !important;
+  overflow-y: auto;
+  padding-bottom: 2em;
+}
+
+.borough-status-details .service-notice > p > strong:first-child {
+  display: inline-block;
+  margin-bottom: 1.5em;
+}

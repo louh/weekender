@@ -91,7 +91,13 @@ function transformStatusSummary (text) {
 
 function transformStatusDetail (text) {
   // Typography - should address variable whitespace
-  const phase1 = text.trim().replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*(?!bound)/g, '\u200a–\u200a')
+  // Standardizes variable whitespace around bullets
+  // Replaces hyphens with en-dashes, except for certain conditions
+  //  - Predominant use case: date ranges and station names
+  //  - Right now, it's just in front of the suffix `-bound`, as in `New Lots-bound`
+  // Removes spaces that precede commas, which is sometimes observed in `MetroCard ,`
+  // Removes spaces that precede spaces, sometimes observed when a station link ends a sentence.
+  const phase1 = text.trim().replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*(?!bound)/g, '\u200a–\u200a').replace(/\s+,/g, ',').replace(/\s+\./g, '.')
 
   // Replace image HTML with {{brackets}}
   const phase1b = phase1.replace(/<img src='images\/routes\/14px\//g, '{{').replace(/.(png|gif)' align='bottom' \/>/g, '}}')
@@ -142,12 +148,14 @@ export default class ServiceNotice extends Component {
       details: PropTypes.string
     }),
     active: PropTypes.bool,
-    togglable: PropTypes.bool
+    togglable: PropTypes.bool,
+    onClick: PropTypes.func
   }
 
   static defaultProps = {
     active: true,
-    togglable: false
+    togglable: false,
+    onClick: () => {}
   }
 
   constructor (props) {
@@ -167,14 +175,19 @@ export default class ServiceNotice extends Component {
         isActive: !this.state.isActive
       })
     }
+
+    // Forward to onClick handler prop, if present
+    if (this.props.onClick) {
+      this.props.onClick(event)
+    }
   }
 
   render () {
-    const { status } = this.props
+    const { status, active } = this.props
     const { isActive } = this.state
     
     const classNames = ['service-notice']
-    if (isActive) {
+    if (isActive || active) {
       classNames.push('service-notice-active')
     }
     if (this.props.togglable) {

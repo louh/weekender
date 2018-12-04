@@ -6,7 +6,10 @@ export default class BoroughView extends Component {
   render () {
     return (
       <Fragment>
-        <h2>Borough <span className="heading-instructions">Select one</span></h2>
+        <h2>
+          Borough
+          {/*<span className="heading-instructions">Select one</span>*/}
+        </h2>
         <hr />
         <ul className="borough-list">
           <li><NavLink to="/borough/manhattan" activeClassName="active-link">Manhattan</NavLink></li>

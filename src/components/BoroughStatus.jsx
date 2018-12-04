@@ -12,8 +12,29 @@ class BoroughStatus extends Component {
     history: PropTypes.object.isRequired
   }
 
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      borough: props.match.params.borough_id,
+      active: null
+    }
+  }
+
+  static getDerivedStateFromProps (props, state) {
+    // Resets active selection when borough changes
+    if (props.match.params.borough_id !== state.borough) {
+      return {
+        borough: props.match.params.borough_id,
+        active: null
+      }
+    }
+
+    return null
+  }
+
   parseData (data) {
-    return data.map(item => item.split('||')).map(item => ({ borough: item[0], short: item[2], long: item[3] }))
+    return data.map(item => item.split('||')).map(item => ({ borough: item[0], summary: item[2], details: item[3] }))
   }
 
   getStatusesForBorough (borough, data) {
@@ -53,22 +74,34 @@ class BoroughStatus extends Component {
     }
 
     return statuses
-      .map((item) => splitStatusText(item.long))
-      .map((status, i) => <ServiceNotice key={i} status={{ id: i, ...status }} active={false} togglable={false} />)
+      .map((item) => splitStatusText(item.details))
+      .map((status, i) => (
+        <ServiceNotice
+          key={i}
+          status={status}
+          active={JSON.stringify(this.state.active) === JSON.stringify(status)}
+          togglable={false}
+          onClick={(event) => {
+            this.setState({
+              active: status
+            })
+          }}
+        />
+      ))
   }
 
   render () {
-    const borough = this.props.match.params.borough_id
+    const { borough } = this.state
     /* global weekendboroughstatus */
     const data = this.parseData(weekendboroughstatus)
     const statuses = this.getStatusesForBorough(borough, data)
 
     return (  
       <div className="borough-status-container">
-        <div className="info-panel">
+        <div className="info-panel borough-status-selector">
           <h2>
             Planned service changes
-            {borough && <span className="heading-instructions">Select one for details</span>}
+            {/* {borough && <span className="heading-instructions">Select one for details</span>} */}
           </h2>
           <hr />
           <h3>
@@ -78,9 +111,18 @@ class BoroughStatus extends Component {
             {this.renderStatusSummaries(borough, statuses)}
           </section>
         </div>
-        <div className="info-panel">
+        <div className="info-panel borough-status-details" key={borough}>
           <h2>Details</h2>
           <hr />
+          {borough && (this.state.active && (
+            <ServiceNotice
+              status={this.state.active}
+              active={true}
+              togglable={false}
+            />
+          ) || (
+            (statuses.length > 0) && <em style={{ fontWeight: 'normal', color: '#666' }}>Please select a status</em>
+          ))}
         </div>
       </div>
     )
