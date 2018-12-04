@@ -29,20 +29,24 @@ export default class MapContainer extends Component {
   componentDidMount () {
     if (!this.mapEl.current) return
 
+    const TILES = '/tiles/{z}/{x}/{y}.png'
+    const TILES_RETINA = '/tiles/{z}/{x}/{y}@2x.png'
+
     // Proof of concept Leaflet map tiles
     const map = L.map('map', {
       attributionControl: false,
       zoomControl: false,
-      center: { lat: 40.80077, lng: -73.92057 },
-      zoom: 15,
-      maxBounds: L.latLngBounds(L.latLng(40.88031, -73.981899), L.latLng(40.769620, -73.835736)),
+      center: { lat: 31.2034, lng: -112.3242 },
+      zoom: 3,
+      maxBounds: L.latLngBounds(L.latLng(85.03100, -179.756927), L.latLng(-75.758940, 119.53125)),
       maxBoundsViscosity: 0.5
     })
 
-    L.tileLayer('/tiles/{z}/{x}/{y}.png', {
+    L.tileLayer(window.devicePixelRatio > 1 ? TILES_RETINA : TILES, {
       attribution: false,
-      maxZoom: 16,
-      minZoom: 15
+      maxZoom: 5,
+      minZoom: 1,
+      noWrap: true
     }).addTo(map)
 
     map.on('click', (event) => {
