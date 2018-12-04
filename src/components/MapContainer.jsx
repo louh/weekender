@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import L from 'leaflet'
+import 'leaflet-rastercoords'
 import LineDiagram from './LineDiagram'
 import BoroughStatus from './BoroughStatus'
 
 import '../../node_modules/leaflet/dist/leaflet.css'
 import './MapContainer.css'
+
+import IMG_DOT_BLACK from '../images/dot_black.svg'
+import IMG_DOT_GRAY from '../images/dot_gray.svg'
+import IMG_DOT_WHITE from '../images/dot_white.svg'
+import IMG_DOT_FLASHING from '../images/dot_flashing.svg'
 
 export default class MapContainer extends Component {
   state = {
@@ -31,6 +37,10 @@ export default class MapContainer extends Component {
 
     const TILES = '/tiles/{z}/{x}/{y}.png'
     const TILES_RETINA = '/tiles/{z}/{x}/{y}@2x.png'
+    const img = [
+      8192, // original width of image
+      8192  // original height of image
+    ]
 
     // Proof of concept Leaflet map tiles
     const map = L.map('map', {
@@ -48,6 +58,37 @@ export default class MapContainer extends Component {
       minZoom: 1,
       noWrap: true
     }).addTo(map)
+
+    // Proof of concept markers
+    // Use leaflet-rastercoords to convert pixel coordinates to map coordinates
+    const rc = new L.RasterCoords(map, img)
+    const testcoords = rc.unproject([429 * 2, 242 * 2])
+    const circleMarker = L.circleMarker(testcoords, {
+      radius: getMarkerRadiusForZoom(map.getZoom()),
+      stroke: false,
+      color: 'black',
+      fillOpacity: 1,
+      className: 'map-marker'
+    }).addTo(map)
+
+    // Returns 1 for zoom 2, 2 for zoom 3, 4 for zoom 4, 8 for zoom 5
+    function getMarkerRadiusForZoom (zoom) {
+      return Math.max(Math.pow(2, (zoom - 2)), 1)
+    }
+
+    map.on('zoomend', function() {
+      const currentZoom = map.getZoom()
+
+      // Resize the marker based on zoom level
+      circleMarker.setRadius(getMarkerRadiusForZoom(currentZoom))
+
+      // At low zooms, hide the dots
+      if (currentZoom <= 1) {
+        circleMarker.setStyle({ fillOpacity: 0 })
+      } else {
+        circleMarker.setStyle({ fillOpacity: 1 })
+      }
+    })
 
     map.on('click', (event) => {
       console.log(event.latlng)

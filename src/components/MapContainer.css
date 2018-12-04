@@ -31,3 +31,8 @@
   height: 100%; 
   object-fit: contain;
 }
+
+/* map markers */
+.map-marker:hover {
+  fill: white;
+}
