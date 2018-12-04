@@ -137,7 +137,11 @@ function transformStatusDetail (text) {
   // Replace images with bullet components
   const phase3 = replaceStringWithReactComponent(phase2)
 
-  return phase3
+  // If the final details are empty, replace with a placeholder stating that
+  // no additional details are available.
+  const final = (phase3 && !phase3[0]) ? <em>No additional details.</em> : phase3
+
+  return final
 }
 
 export default class ServiceNotice extends Component {

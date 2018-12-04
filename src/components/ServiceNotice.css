@@ -66,6 +66,10 @@
   cursor: pointer;
 }
 
+.service-notice-interactive:hover {
+  color: black;
+}
+
 .service-notice-active {
   border-top: 1px solid black !important;
   color: black;
