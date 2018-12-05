@@ -139,7 +139,7 @@ function transformStatusDetail (text) {
 
   // If the final details are empty, replace with a placeholder stating that
   // no additional details are available.
-  const final = (phase3 && !phase3[0]) ? [<em>No additional details.</em>] : phase3
+  const final = (phase3.length <= 1 && !phase3[0]) ? [<em>No additional details.</em>] : phase3
 
   // Add TripPlanner+ link
   final.push(
