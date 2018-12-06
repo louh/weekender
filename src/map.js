@@ -42,27 +42,24 @@ export function initMap () {
     // Proof of concept markers
     // Use leaflet-rastercoords to convert pixel coordinates to map coordinates
     rc = new L.RasterCoords(map, RASTER_IMAGE_SIZE)
-    const testcoords = rc.unproject([429 * 2, 242 * 2])
-    const circleMarker = L.circleMarker(testcoords, {
-      radius: getMarkerRadiusForZoom(map.getZoom()),
-      stroke: false,
-      color: 'black',
-      fillOpacity: 1,
-      className: 'map-marker'
-    }).addTo(map)
+    const allMarkers = drawMarkers(map, rc)
   
     map.on('zoomend', function() {
       const currentZoom = map.getZoom()
+      const radius = getMarkerRadiusForZoom(currentZoom)
   
       // Resize the marker based on zoom level
-      circleMarker.setRadius(getMarkerRadiusForZoom(currentZoom))
   
-      // At low zooms, hide the dots
-      if (currentZoom <= 1) {
-        circleMarker.setStyle({ fillOpacity: 0 })
-      } else {
-        circleMarker.setStyle({ fillOpacity: 1 })
-      }
+      allMarkers.forEach((marker) => {
+        marker.setRadius(radius)
+
+        // At low zooms, hide the dots
+        if (currentZoom <= 1) {
+          marker.setStyle({ fillOpacity: 0 })
+        } else {
+          marker.setStyle({ fillOpacity: 1 })
+        }
+      })
     })
   
     map.on('click', (event) => {
@@ -86,4 +83,24 @@ export function setMapViewToRasterCoords (x, y, zoom = 4) {
 // Returns 1 for zoom 2, 2 for zoom 3, 4 for zoom 4, 8 for zoom 5
 function getMarkerRadiusForZoom (zoom) {
   return Math.max(Math.pow(2, (zoom - 2)), 1)
+}
+
+function drawMarkers (map, rc) {
+  const radius = getMarkerRadiusForZoom(map.getZoom())
+
+  /* global stationMapCoordinates */
+  return stationMapCoordinates.map((data) => {
+    const coordData = data.split(',')
+    const x = Number.parseInt(coordData[0], 10)
+    const y = Number.parseInt(coordData[1], 10)
+    const testcoords = rc.unproject([x * 2, y * 2])
+
+    return L.circleMarker(testcoords, {
+      radius: radius,
+      stroke: false,
+      color: 'black',
+      fillOpacity: 1,
+      className: 'map-marker'
+    }).addTo(map)
+  })
 }

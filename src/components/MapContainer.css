@@ -36,3 +36,24 @@
 .map-marker:hover {
   fill: white;
 }
+
+.map-marker {
+  animation-name: flashing-dot;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: step-start;
+}
+
+@keyframes flashing-dot {
+  0% {
+    fill: black;
+  }
+
+  50% {
+    fill: white;
+  }
+
+  100% {
+    fill: black;
+  }
+}
