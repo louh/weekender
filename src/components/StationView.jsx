@@ -21,7 +21,7 @@ class StationView extends Component {
     const coordData = stationMapCoordinates[stationId].split(',')
     const x = Number.parseInt(coordData[0], 10)
     const y = Number.parseInt(coordData[1], 10)
-    setMapViewToRasterCoords(x, y, 5)
+    setMapViewToRasterCoords(x, y, 5, this.props.history)
   }
 
   renderBullets = (bullets) => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { Route, withRouter } from 'react-router-dom'
 import { initMap } from '../map'
 import LineDiagram from './LineDiagram'
 import BoroughStatus from './BoroughStatus'
@@ -7,7 +8,13 @@ import BoroughStatus from './BoroughStatus'
 import '../../node_modules/leaflet/dist/leaflet.css'
 import './MapContainer.css'
 
-export default class MapContainer extends Component {
+class MapContainer extends Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  }
+
   state = {
     hasError: false,
     error: null
@@ -29,7 +36,7 @@ export default class MapContainer extends Component {
   componentDidMount () {
     if (!this.mapEl.current) return
 
-    initMap()
+    initMap(this.props.history)
   }
 
   render () {
@@ -52,3 +59,5 @@ export default class MapContainer extends Component {
     )
   }
 }
+
+export default withRouter(MapContainer)

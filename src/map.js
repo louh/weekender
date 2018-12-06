@@ -16,7 +16,7 @@ const INITIAL_ZOOM = 3
 let map
 let rc
 
-export function initMap () {
+export function initMap (history) {
   return new Promise((resolve, reject) => {
     if (map) {
       resolve(map)
@@ -42,7 +42,7 @@ export function initMap () {
     // Proof of concept markers
     // Use leaflet-rastercoords to convert pixel coordinates to map coordinates
     rc = new L.RasterCoords(map, RASTER_IMAGE_SIZE)
-    const allMarkers = drawMarkers(map, rc)
+    const allMarkers = drawMarkers(map, rc, history)
   
     map.on('zoomend', function() {
       const currentZoom = map.getZoom()
@@ -65,12 +65,12 @@ export function initMap () {
   })
 }
 
-export function setInitialView () {
-  initMap().then(map => map.setView(INITIAL_VIEW, INITIAL_ZOOM, { animate: false }))
+export function setInitialView (history) {
+  initMap(history).then(map => map.setView(INITIAL_VIEW, INITIAL_ZOOM, { animate: false }))
 }
 
-export function setMapViewToRasterCoords (x, y, zoom = 4) {
-  initMap().then((map) => {
+export function setMapViewToRasterCoords (x, y, zoom = 4, history) {
+  initMap(history).then((map) => {
     map.setView(rc.unproject([x * 2, y * 2]), zoom, { animate: false })
   })
 }
@@ -80,7 +80,7 @@ function getMarkerRadiusForZoom (zoom) {
   return Math.max(Math.pow(2, (zoom - 2)), 1)
 }
 
-function drawMarkers (map, rc) {
+function drawMarkers (map, rc, history) {
   const radius = getMarkerRadiusForZoom(map.getZoom())
 
   /* global stationRouteMapCoordinates */
@@ -101,6 +101,9 @@ function drawMarkers (map, rc) {
       y = 1837
     }
 
+    // TODO: some special-case markers (e.g. 7-line) are square
+    // TODO: use class names to define states and line-specific colors
+
     const latlng = rc.unproject([x * 2, y * 2])
     const marker = L.circleMarker(latlng, {
       radius: radius,
@@ -112,12 +115,18 @@ function drawMarkers (map, rc) {
 
     // Store data on the marker
     marker.data = {
-      id,
+      id: data[0].split('_')[0],
+      originalId: id,
       data: data[1]
     }
 
     marker.on('click', (event) => {
       console.log(event.target.data)
+
+      // Redirect to station, done by passing react-router's `history` prop
+      // all the way to this function. Not ideal. TODO: refactor
+      const stationId = event.target.data.id
+      history.push(`/station/${stationId}`)
     })
 
     return marker
