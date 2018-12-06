@@ -49,7 +49,6 @@ export function initMap () {
       const radius = getMarkerRadiusForZoom(currentZoom)
   
       // Resize the marker based on zoom level
-  
       allMarkers.forEach((marker) => {
         marker.setRadius(radius)
 
@@ -60,10 +59,6 @@ export function initMap () {
           marker.setStyle({ fillOpacity: 1 })
         }
       })
-    })
-  
-    map.on('click', (event) => {
-      console.log(event.latlng)
     })
 
     resolve(map)
@@ -88,19 +83,43 @@ function getMarkerRadiusForZoom (zoom) {
 function drawMarkers (map, rc) {
   const radius = getMarkerRadiusForZoom(map.getZoom())
 
-  /* global stationMapCoordinates */
-  return stationMapCoordinates.map((data) => {
-    const coordData = data.split(',')
-    const x = Number.parseInt(coordData[0], 10)
-    const y = Number.parseInt(coordData[1], 10)
-    const testcoords = rc.unproject([x * 2, y * 2])
+  /* global stationRouteMapCoordinates */
+  // There's also `stationMapCoordinates`, but don't use that
+  // Convert `stationRouteMapCoordinates` to a real array (it uses
+  // string IDs as keys, non-standard behavior for arrays)
+  const stations = Object.entries(stationRouteMapCoordinates)
 
-    return L.circleMarker(testcoords, {
+  return stations.map((data) => {
+    const [ id, coords ] = data
+    const coordData = coords.split(',')
+    let x = Number.parseInt(coordData[0], 10)
+    let y = Number.parseInt(coordData[1], 10)
+
+    // Special case: some dots in the original data are given the
+    // wrong coordinates, so let's fix it here.
+    if (['10054_4', '10054_5', '10054_6', '10054_N', '10054_Q', '10054_R', '10054_W'].includes(id)) {
+      y = 1837
+    }
+
+    const latlng = rc.unproject([x * 2, y * 2])
+    const marker = L.circleMarker(latlng, {
       radius: radius,
       stroke: false,
       color: 'black',
       fillOpacity: 1,
       className: 'map-marker'
     }).addTo(map)
+
+    // Store data on the marker
+    marker.data = {
+      id,
+      data: data[1]
+    }
+
+    marker.on('click', (event) => {
+      console.log(event.target.data)
+    })
+
+    return marker
   })
 }
