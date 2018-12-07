@@ -37,23 +37,114 @@
   fill: white;
 }
 
-.map-marker {
+.map-marker-flashing {
   animation-name: flashing-dot;
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-timing-function: step-start;
 }
 
+.map-marker-line-green.map-marker-flashing {
+  animation-name: flashing-dot-green;
+}
+
+.map-marker-line-orange.map-marker-flashing {
+  animation-name: flashing-dot-orange;
+}
+
+.map-marker-line-blue.map-marker-flashing {
+  animation-name: flashing-dot-blue;
+}
+
+.map-marker-line-yellow.map-marker-flashing {
+  animation-name: flashing-dot-yellow;
+}
+
+.map-marker-line-purple.map-marker-flashing {
+  animation-name: flashing-dot-purple;
+}
+
+.map-marker-line-lightgreen.map-marker-flashing {
+  animation-name: flashing-dot-lightgreen;
+}
+
+.map-marker-line-brown.map-marker-flashing {
+  animation-name: flashing-dot-brown;
+}
+
+.map-marker-line-gray.map-marker-flashing {
+  animation-name: flashing-dot-gray;
+}
+
+.map-marker-line-red.map-marker-flashing {
+  animation-name: flashing-dot-red;
+}
+
+/* TODO: Flashing dots in colors that match the lines */
 @keyframes flashing-dot {
-  0% {
-    fill: black;
-  }
+  0% { fill: black; }
+  50% { fill: white; }
+  100% { fill: black; }
+}
 
-  50% {
-    fill: white;
-  }
+@keyframes flashing-dot-green {
+  0% { fill: black; }
+  50% { fill: #83dbaf; }
+  100% { fill: black; }
+}
 
-  100% {
-    fill: black;
-  }
+@keyframes flashing-dot-orange {
+  0% { fill: black; }
+  50% { fill: #fed9a9; }
+  100% { fill: black; }
+}
+
+@keyframes flashing-dot-blue {
+  0% { fill: black; }
+  50% { fill: #a9d6f3; }
+  100% { fill: black; }
+}
+
+@keyframes flashing-dot-yellow {
+  0% { fill: black; }
+  50% { fill: #feea8d; }
+  100% { fill: black; }
+}
+
+@keyframes flashing-dot-purple {
+  0% { fill: black; }
+  50% { fill: #e7c8ed; }
+  100% { fill: black; }
+}
+
+@keyframes flashing-dot-lightgreen {
+  0% { fill: black; }
+  50% { fill: #dfed88; }
+  100% { fill: black; }
+}
+
+@keyframes flashing-dot-brown {
+  0% { fill: black; }
+  50% { fill: #d8bd90; }
+  100% { fill: black; }
+}
+
+@keyframes flashing-dot-gray {
+  0% { fill: black; }
+  50% { fill: #cbcbcb; }
+  100% { fill: black; }
+}
+
+/* TODO */
+@keyframes flashing-dot-lightgray {
+  0% { fill: black; }
+  50% { fill: white; }
+  100% { fill: black; }
+}
+
+/* TODO */
+@keyframes flashing-dot-red {
+  0% { fill: black; }
+  50% { fill: white; }
+  100% { fill: black; }
 }

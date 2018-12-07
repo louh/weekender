@@ -77,7 +77,11 @@ export function setMapViewToRasterCoords (x, y, zoom = 4, history) {
 
 // Returns 1 for zoom 2, 2 for zoom 3, 4 for zoom 4, 8 for zoom 5
 function getMarkerRadiusForZoom (zoom) {
-  return Math.max(Math.pow(2, (zoom - 2)), 1)
+  const radius = Math.max(Math.pow(2, (zoom - 2)), 1)
+  if (zoom === 5) {
+    return radius + 1 // Overlay black "rim" that continues to be visible
+  }
+  return radius
 }
 
 function drawMarkers (map, rc, history) {
@@ -91,6 +95,7 @@ function drawMarkers (map, rc, history) {
 
   return stations.map((data) => {
     const [ id, coords ] = data
+    const [ stationId, lineId ] = id.split('_')
     const coordData = coords.split(',')
     let x = Number.parseInt(coordData[0], 10)
     let y = Number.parseInt(coordData[1], 10)
@@ -103,6 +108,53 @@ function drawMarkers (map, rc, history) {
 
     // TODO: some special-case markers (e.g. 7-line) are square
     // TODO: use class names to define states and line-specific colors
+    const classNames = ['map-marker', 'map-marker-flashing']
+    switch (lineId.toLowerCase()) {
+      case '1':
+      case '2':
+      case '3':
+        classNames.push('map-marker-line-red')
+        break
+      case '4':
+      case '5':
+      case '6':
+        classNames.push('map-marker-line-green')
+        break
+      case '7':
+        classNames.push('map-marker-line-purple')
+        break
+      case 'a':
+      case 'c':
+      case 'e':
+      case 'sir':
+        classNames.push('map-marker-line-blue')
+        break
+      case 'l':
+        classNames.push('map-marker-line-lightgray')
+        break
+      case 's':
+        classNames.push('map-marker-line-gray')
+        break
+      case 'b':
+      case 'd':
+      case 'f':
+      case 'm':
+        classNames.push('map-marker-line-orange')
+        break
+      case 'n':
+      case 'q':
+      case 'r':
+      case 'w':
+        classNames.push('map-marker-line-yellow')
+        break
+      case 'j':
+      case 'z':
+        classNames.push('map-marker-line-brown')
+        break
+      case 'g':
+        classNames.push('map-marker-line-lightgreen')
+        break
+      }
 
     const latlng = rc.unproject([x * 2, y * 2])
     const marker = L.circleMarker(latlng, {
@@ -110,12 +162,13 @@ function drawMarkers (map, rc, history) {
       stroke: false,
       color: 'black',
       fillOpacity: 1,
-      className: 'map-marker'
+      className: classNames.join(' ')
     }).addTo(map)
 
     // Store data on the marker
     marker.data = {
-      id: data[0].split('_')[0],
+      id: stationId,
+      line: lineId,
       originalId: id,
       data: data[1]
     }
