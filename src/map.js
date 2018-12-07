@@ -100,15 +100,10 @@ function drawMarkers (map, rc, history) {
     let x = Number.parseInt(coordData[0], 10)
     let y = Number.parseInt(coordData[1], 10)
 
-    // Special case: some dots in the original data are given the
-    // wrong coordinates, so let's fix it here.
-    if (['10054_4', '10054_5', '10054_6', '10054_N', '10054_Q', '10054_R', '10054_W'].includes(id)) {
-      y = 1837
-    }
-
     // TODO: some special-case markers (e.g. 7-line) are square
-    // TODO: use class names to define states and line-specific colors
-    const classNames = ['map-marker', 'map-marker-flashing']
+    const classNames = ['map-marker']
+
+    // Define line-specific colors appearance
     switch (lineId.toLowerCase()) {
       case '1':
       case '2':
@@ -154,7 +149,19 @@ function drawMarkers (map, rc, history) {
       case 'g':
         classNames.push('map-marker-line-lightgreen')
         break
-      }
+    }
+
+    // Look for blinking dots
+    const blinking = weekendstatus.filter((item) => item.includes(`${lineId},${stationId},${x},${y}`) && item.endsWith('N,'))
+    if (blinking.length > 0) {
+      classNames.push('map-marker-flashing')
+    }
+
+    // Special case: some dots in the original data are given the
+    // wrong coordinates, so let's fix it here.
+    if (['10054_4', '10054_5', '10054_6', '10054_N', '10054_Q', '10054_R', '10054_W'].includes(id)) {
+      y = 1837
+    }
 
     const latlng = rc.unproject([x * 2, y * 2])
     const marker = L.circleMarker(latlng, {
@@ -174,8 +181,6 @@ function drawMarkers (map, rc, history) {
     }
 
     marker.on('click', (event) => {
-      console.log(event.target.data)
-
       // Redirect to station, done by passing react-router's `history` prop
       // all the way to this function. Not ideal. TODO: refactor
       const stationId = event.target.data.id
