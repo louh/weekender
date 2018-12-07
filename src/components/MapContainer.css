@@ -33,8 +33,10 @@
 }
 
 /* map markers */
-.map-marker:hover {
+.map-marker:hover,
+.map-marker.map-marker-highlight {
   fill: white;
+  animation: none;
 }
 
 .map-marker-flashing {

@@ -157,6 +157,9 @@ function drawMarkers (map, rc, history) {
       classNames.push('map-marker-flashing')
     }
 
+    // Classname for station id
+    classNames.push('map-marker__' + stationId)
+
     // Special case: some dots in the original data are given the
     // wrong coordinates, so let's fix it here.
     if (['10054_4', '10054_5', '10054_6', '10054_N', '10054_Q', '10054_R', '10054_W'].includes(id)) {
@@ -174,7 +177,7 @@ function drawMarkers (map, rc, history) {
 
     // Store data on the marker
     marker.data = {
-      id: stationId,
+      stationId: stationId,
       line: lineId,
       originalId: id,
       data: data[1]
@@ -183,8 +186,23 @@ function drawMarkers (map, rc, history) {
     marker.on('click', (event) => {
       // Redirect to station, done by passing react-router's `history` prop
       // all the way to this function. Not ideal. TODO: refactor
-      const stationId = event.target.data.id
+      const stationId = event.target.data.stationId
       history.push(`/station/${stationId}`)
+    })
+
+    marker.on('mouseover', (event) => {
+      const stationId = event.target.data.stationId
+      const paths = document.querySelectorAll('path.map-marker__' + stationId)
+      paths.forEach((path) => {
+        path.classList.add('map-marker-highlight')
+      })
+    })
+
+    marker.on('mouseout', (event) => {
+      const paths = document.querySelectorAll('path.map-marker')
+      paths.forEach((path) => {
+        path.classList.remove('map-marker-highlight')
+      })
     })
 
     return marker
