@@ -169,8 +169,12 @@ function drawMarkers (map, rc, history) {
     const latlng = rc.unproject([x * 2, y * 2])
     const marker = L.circleMarker(latlng, {
       radius: radius,
-      stroke: false,
-      color: 'black',
+      // Stroke - invisible stroke increases "hit area"
+      color: 'white',
+      opacity: 0,
+      weight: 5,
+      // Fill
+      fillColor: 'black',
       fillOpacity: 1,
       className: classNames.join(' ')
     }).addTo(map)
