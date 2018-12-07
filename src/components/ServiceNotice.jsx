@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import sanitizeHtml from 'sanitize-html'
 import SubwayBullet from './SubwayBullet'
 import Icon from './Icon'
 import './ServiceNotice.css'
@@ -55,12 +56,24 @@ function capitalizeFirstLetter (string) {
 }
 
 function transformStatusSummary (text) {
+  // Remove links from summary (see G-train notice)
+  // Only allow img tags, simplifying their structure
+  // Removes <br> which is not allowed
+  // Note this actually encodes & as &amp;, and decodes &bull; to •
+  // so we have to address that later.
+  text = sanitizeHtml(text, {
+    allowedTags: [ 'img' ],
+    allowedAttributes: {
+      // 'a': [ 'href' ],
+      'img': [ 'src' ]
+    }
+  })
+
   // Typography - should address variable whitespace
-  // Also get rid of <br>
-  const phase1 = text.trim().replace(/\s*&bull;\s*/g, ' • ').replace(/\s*-\s*(?!bound)/g, '\u200a–\u200a').replace(/<br>/g, '')
+  const phase1 = text.trim().replace(/\s*(&bull;|•)\s*/g, ' • ').replace(/&amp;/g, '&').replace(/\s*-\s*(?!bound)/g, '\u200a–\u200a')
 
   // Replace image HTML with {{brackets}}
-  const phase1b = phase1.replace(/<img src='images\/routes\/14px\//g, '{{').replace(/.(png|gif)' align='bottom' \/>/g, '}}')
+  const phase1b = phase1.replace(/<img src="images\/routes\/14px\//g, '{{').replace(/.(png|gif)" \/>/g, '}}')
 
   // Add newlines between things
   // Split on anything that is 2 or more spaces
