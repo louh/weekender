@@ -1,4 +1,4 @@
-# Weekender II
+# The Weekender Unofficial HD Remaster
 
 Unofficial proof-of-concept modern update for MTA's Weekender. http://web.mta.info/weekender/
 
