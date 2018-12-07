@@ -139,11 +139,11 @@ function transformStatusDetail (text) {
 
   // If the final details are empty, replace with a placeholder stating that
   // no additional details are available.
-  const final = (phase3.length <= 1 && !phase3[0]) ? [<em>No additional details.</em>] : phase3
+  const final = (phase3.length <= 1 && !phase3[0]) ? [<em key="nothing">No additional details.</em>] : phase3
 
   // Add TripPlanner+ link
   final.push(
-    <p>
+    <p key="tripplanner">
       <a
         href="http://tripplanner.mta.info/MyTrip/ui_web/customplanner/tripplanner.aspx"
         target="_blank"
@@ -220,9 +220,7 @@ export default class ServiceNotice extends Component {
         onClick={this.handleClick}
       >
         <div>
-          <p>
-            {transformStatusSummary(status.summary)}
-          </p>
+          {transformStatusSummary(status.summary)}
         </div>
 
         <div className="service-notice-details">
