@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rm -rf ./.cache && rm -rf ./dist && mkdir dist && touch ./dist/.gitkeep",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "copy-images": "cp -R ./tiles ./dist/ && cp -R ./test/fixtures ./dist/",
+    "copy-images": "cp -R ./tiles ./dist/ && cp -R ./test/fixtures ./dist/ && cp ./src/images/thumbnail.png ./dist/",
     "start": "npm run copy-images && parcel src/index.html",
     "build": "npm run copy-images && parcel build src/index.html"
   },
