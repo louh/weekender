@@ -32,13 +32,6 @@
   object-fit: contain;
 }
 
-/* map markers */
-.map-marker:hover,
-.map-marker.map-marker-highlight {
-  fill: white;
-  animation: none;
-}
-
 .map-marker-flashing {
   animation-name: flashing-dot;
   animation-duration: 2s;
