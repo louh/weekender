@@ -16,3 +16,14 @@ footer {
   text-align: right;
   padding-right: 15px;
 }
+
+@media only screen and (max-width: 600px) {
+  .footer-left {
+    flex: 0 0 80px;
+  }
+
+  .footer-middle {
+    text-align: right;
+    margin-right: 15px;
+  }
+}

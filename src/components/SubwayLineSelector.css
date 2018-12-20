@@ -13,3 +13,24 @@
   float: left;
   margin-right: 3px;
 }
+
+/* grid organization on mobile */
+@media only screen and (max-width: 600px) {
+  .subway-lines {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 3px;
+    object-fit: contain;
+  }
+
+  .subway-lines .subway-bullet {
+    width: auto;
+    height: auto;
+  }
+  
+  .subway-lines li {
+    margin: 0;
+  }
+
+
+}

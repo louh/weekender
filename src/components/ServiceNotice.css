@@ -7,6 +7,12 @@
   margin-bottom: 3px; /* Separation from footer implies scrollability */
 }
 
+@media only screen and (max-width: 600px) {
+  .service-notice-container {
+    height: auto;
+  }
+}
+
 .service-notice ul {
   padding: 0;
   list-style-type: none;

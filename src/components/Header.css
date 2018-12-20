@@ -24,3 +24,11 @@ img.header-image {
 .float-right {
   float: right;
 }
+
+@media only screen and (max-width: 600px) {
+  img.header-image {
+    left: 15px;
+    height: 26px;
+    width: auto;
+  }
+}

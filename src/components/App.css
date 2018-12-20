@@ -67,3 +67,9 @@ main {
 .hidden {
   display: none;
 }
+
+@media only screen and (max-width: 600px) {
+  main {
+    flex-direction: column-reverse;
+  }
+}

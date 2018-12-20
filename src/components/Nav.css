@@ -2,6 +2,13 @@
   display: flex;
 }
 
+/* Hide on mobile for now. TODO: Make this appear interactively (e.g. hamburger menu) */
+@media only screen and (max-width: 600px) {
+  .nav-container {
+    display: none;
+  }
+}
+
 .nav-left {
   width: 330px;
   padding-left: 15px;

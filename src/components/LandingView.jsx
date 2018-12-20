@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import SubwayLineSelector from './SubwayLineSelector'
+import './LandingView.css'
 
 export default class LandingView extends Component {
   render () {
@@ -10,7 +11,7 @@ export default class LandingView extends Component {
         <SubwayLineSelector />
         <hr />
 
-        <section>
+        <section className="landing">
           <h3>Welcome to the Weekender</h3>
 
           <p>The Weekender is your (unofficial) guide to understanding planned service changes in effect for system maintenance and construction on NYC’s subway system.</p>
