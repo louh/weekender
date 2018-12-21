@@ -12,6 +12,7 @@ const INITIAL_VIEW = {
   lng: -63.92257
 }
 const INITIAL_ZOOM = 3
+const INITIAL_ZOOM_MOBILE = 1
 
 let map
 let rc
@@ -27,7 +28,7 @@ export function initMap (history) {
       attributionControl: false,
       zoomControl: false,
       center: INITIAL_VIEW,
-      zoom: INITIAL_ZOOM,
+      zoom: (window.innerWidth > 600) ? INITIAL_ZOOM : INITIAL_ZOOM_MOBILE,
       maxBounds: L.latLngBounds(L.latLng(85.03100, -179.756927), L.latLng(-75.758940, 119.53125)),
       maxBoundsViscosity: 0.5
     })
@@ -61,12 +62,16 @@ export function initMap (history) {
       })
     })
 
+    // Expose globally for debugging
+    window.map = map
+
     resolve(map)
   })
 }
 
 export function setInitialView (history) {
-  initMap(history).then(map => map.setView(INITIAL_VIEW, INITIAL_ZOOM, { animate: false }))
+  const zoom = (window.innerWidth > 600) ? INITIAL_ZOOM : INITIAL_ZOOM_MOBILE
+  initMap(history).then(map => map.setView(INITIAL_VIEW, zoom, { animate: false }))
 }
 
 export function setMapViewToRasterCoords (x, y, zoom = 4, history) {
