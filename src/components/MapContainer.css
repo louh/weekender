@@ -41,9 +41,45 @@
 /* map markers */
 .map-marker:hover,
 .map-marker.map-marker-highlight {
-  fill: white;
+  fill: white !important;
   animation: none;
 }
+
+.map-marker-line-green.map-marker-grayed-out {
+  fill: #a4c1b2;
+}
+
+.map-marker-line-orange.map-marker-grayed-out {
+  fill: #ccbda9;
+}
+
+.map-marker-line-blue.map-marker-grayed-out {
+  fill: #c0b6a8;
+}
+
+.map-marker-line-yellow.map-marker-grayed-out {
+  fill: #ccc4a5;
+}
+
+.map-marker-line-purple.map-marker-grayed-out {
+  fill: #c2b6c5;
+}
+
+/* .map-marker-line-lightgreen.map-marker-grayed-out {
+  fill: auto;
+} */
+
+.map-marker-line-brown.map-marker-grayed-out {
+  fill: #c0b6a8;
+}
+
+/* .map-marker-line-gray.map-marker-grayed-out {
+  fill: auto;
+} */
+
+/* .map-marker-line-red.map-marker-grayed-out {
+  fill: auto;
+} */
 
 .map-marker-flashing {
   animation-name: flashing-dot;

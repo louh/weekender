@@ -102,6 +102,7 @@ function drawMarkers (map, rc, history) {
     const [ id, coords ] = data
     const [ stationId, lineId ] = id.split('_')
     const coordData = coords.split(',')
+    const isGrayedOut = coordData[4] === 'LG'
     let x = Number.parseInt(coordData[0], 10)
     let y = Number.parseInt(coordData[1], 10)
 
@@ -154,6 +155,11 @@ function drawMarkers (map, rc, history) {
       case 'g':
         classNames.push('map-marker-line-lightgreen')
         break
+    }
+
+    // Grayed out dots
+    if (isGrayedOut) {
+      classNames.push('map-marker-grayed-out')
     }
 
     // Look for blinking dots
