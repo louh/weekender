@@ -167,8 +167,14 @@ function drawMarkers (map, rc, history) {
 
     // Special case: some dots in the original data are given the
     // wrong coordinates, so let's fix it here.
+    // 14th St Union Sq NQRW/456 should all be at the same y-axis
     if (['10054_4', '10054_5', '10054_6', '10054_N', '10054_Q', '10054_R', '10054_W'].includes(id)) {
       y = 1837
+    }
+
+    // Whitehall St-South Ferry W needs to have the same x-axis as R line
+    if (id === '18643_W') {
+      x = 968
     }
 
     const latlng = rc.unproject([x * 2, y * 2])
