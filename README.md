@@ -44,7 +44,7 @@ However, the Weekender, which launched in 2013, is starting to show its age. Thi
 
 - Full screen, removing the gray "dead zones" surrounding the interactive area and giving more room to the map
 - Single page app and routing
-  - React-router v4 is really good.
+  - [React-router v4](https://reacttraining.com/react-router/) is really good.
   - Preserves back/forward browser navigation.
   - Makes individual stations deep-linkable, which wasn't possible before. (Lines were deep-linkable, though.)
   - Removes the loading transition time (shown as a blank page) between different sections of the app.
@@ -56,25 +56,25 @@ However, the Weekender, which launched in 2013, is starting to show its age. Thi
 - Graphics
    - Wherever possible, images use SVG so that they display crisply on Retina screens. SVG and can be infinitely scaled, which future proofs against future resolutions like 4k monitors, and helps with accessibility, in case someone needs to change the page zoom.
    - In the original, the header uses graphics for each navigation item. This makes them harder to change, and impossible to translate when using Google Translate to localize. In my version I insist on using pure text for navigation items.
-   - There's a secret version of the header where "Weekender" is spelled in the subway's original 1960s era font, as a throwback to the use of Vignelli's map. This font is no longer used by the MTA.
+   - There's a secret version of the header where "Weekender" uses the subway's original 1960s era font, as a throwback to Vignelli's original design guidelines. This font is no longer used by the MTA.
 - Accessibility / usability
   - Service notices don't have alt tags on images, making them unintelligible to screen readers. You can see for yourself the effect of this by copy-pasting the notice: the subway line identifiers drop out.
-  - Link colors were too light. (see contrast ratios.) The links were darkened to just past the contrast ratio suggested by the W3C accessibility group.
+  - Link colors were too light. The links were darkened to just past the [contrast ratio suggested by the W3C accessibility group](https://contrast-ratio.com/).
   - (TODO) Tab order navigation
 - Bullets
-  - At first I tried using the official MTA colors, but something felt off. The Weekender's bullets match the lines used on Vignelli's color scheme, which is overall lighter, more pastel. I switched over to using those bullets in order to match the map and it felt much better. In this case, while using the official color scheme would have been more "correct," it didn't seem like the right choice here.
+  - At first I tried using the [official MTA colors](http://web.mta.info/developers/resources/line_colors.htm), but something felt off. The Weekender's bullets match the lines used on Vignelli's color scheme, which is overall lighter, more pastel. I switched over to using those bullets in order to match the map and it felt much better. In this case, while using the official color scheme would have been more "correct," it didn't seem like the right choice here.
 - Branding / meta / SEO
-  - Can't use the MTA logo, so I removed that here.
+  - [Can't use the MTA logo](http://web.mta.info/developers/), so I removed that here.
   - For the favicon, I made a stylized "W" sign (short for Weekender). In the original, it used either a pixelated MTA logo (which I can't use), or the Oracle (!!) logo.
   - The original has no meta tags, making it difficult to understand when posted to social media (Twitter, Facebook, Slack, etc). 
 - Information
-  - Instead of everything being displayed on one line, I extensively parse the incoming text to try and organize the information in a hierarchy. The notice type, .e.g. "Track maintenance" is now displayed as lower case with a initial capital letter (aka sentence case) because this is easier to read. Cross-reference Transport for London. (Other text throughout, like "Weekend Service Notice", is also now displayed in sentence case.)
+  - Instead of everything being displayed on one line, I extensively parse the incoming text to try and organize the information in a hierarchy. The notice type, .e.g. "Track maintenance" is now displayed as lower case with a initial capital letter (aka sentence case) because this is easier to read. Cross-reference [Transport for London content standards](http://content.tfl.gov.uk/onl-std-014-digital-content-standard.pdf). (Other text throughout, like "Weekend Service Notice", is also now displayed in sentence case.)
    - Time/date is also on a separate line.
    - 1pixel black lines now separate different notices.
    - When there's only one notice, display the entire thing immediately, don't require a click to access it.
    - For the line view, when a line is selected, the line bullets fade out (similar to how links are faded) and the selected one remains at full color. This isn't super readable, and there's a bug where hovering over the bullets don't fade back out when you unhover them. Rather than use the bullet list to show what's selected, we now show a larger bullet so it's more obvious what line you are looking at. This is more consistent with station view, is more readable, and is possible now that we have vector-based bullet images.
 - Map
-  - Now uses Leaflet slippy maps! This enables a smooth transition when zooming. By generating multiple zoom levels from the highest-resolution imagery we can zoom all the way out to the overview from the closest zoom.
+  - Now uses [Leaflet slippy maps](https://leafletjs.com/)! This enables a smooth transition when zooming. By generating multiple zoom levels from the highest-resolution imagery we can zoom all the way out to the overview from the closest zoom.
 - Station view
   - Layout adjusted. More breathing room, better centering/placement of things.
   - Search box is now auto-focused so that you can begin filtering as soon as you land on the page.
