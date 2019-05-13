@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import App from './components/App'
+import * as serviceWorker from './serviceWorker'
 
 const FILES = [
   'https://s3.amazonaws.com/weekender-data/weekendstatus.js',
@@ -35,3 +36,8 @@ Promise.all(FILES.map(embedScript)).then(() => {
     </Router>
   , mountNode)
 })
+
+// The service worker code comes from create-react-app.
+// To disable, change register() to unregister().
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister()
