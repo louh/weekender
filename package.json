@@ -6,7 +6,7 @@
   "repository": "https://github.com/louh/weekender",
   "scripts": {
     "clean": "rm -rf ./.cache && rm -rf ./dist && mkdir dist && touch ./dist/.gitkeep",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "copy-images": "cp -R ./tiles ./dist/ && cp -R ./test/fixtures ./dist/ && cp ./src/images/thumbnail.png ./dist/",
     "start": "npm run copy-images && parcel src/index.html --no-source-maps",
     "build": "npm run copy-images && parcel build src/index.html"
@@ -38,7 +38,10 @@
     "eslint-plugin-node": "8.0.1",
     "eslint-plugin-promise": "4.1.1",
     "eslint-plugin-react": "7.12.4",
-    "eslint-plugin-standard": "4.0.0"
+    "eslint-plugin-standard": "4.0.0",
+    "jest": "24.8.0",
+    "react-test-renderer": "16.8.6",
+    "react-testing-library": "7.0.0"
   },
   "babel": {
     "presets": [
@@ -75,6 +78,18 @@
         "error",
         "prefer-double"
       ]
+    }
+  },
+  "jest": {
+    "roots": [
+      "src"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/test/__mocks__/fileMock.js",
+      "\\.(css|scss)$": "<rootDir>/test/__mocks__/styleMock.js"
     }
   }
 }
