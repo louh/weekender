@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Icon> renders accessibility icon 1`] = `
+<img
+  alt="[International Symbol of Accessibility]"
+  className="icon-isa"
+  src="test-file-stub"
+/>
+`;
+
+exports[`<Icon> renders bus icon 1`] = `
+<img
+  alt="[bus icon]"
+  className="subway-bullet-small"
+  src="test-file-stub"
+/>
+`;

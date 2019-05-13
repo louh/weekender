@@ -13,6 +13,8 @@ const Icon = (props) => {
     default:
       break
   }
+
+  return null
 }
 
 Icon.prototype.propTypes = {
