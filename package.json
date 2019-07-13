@@ -9,7 +9,7 @@
     "test": "jest",
     "copy-images": "cp -R ./tiles ./dist/ && cp -R ./test/fixtures ./dist/ && cp ./src/images/thumbnail.png ./dist/",
     "start": "npm run copy-images && parcel src/index.html --no-source-maps",
-    "build": "npm run copy-images && parcel build src/index.html"
+    "build": "npm run copy-images && parcel build src/index.html --no-source-maps"
   },
   "author": "",
   "license": "MIT",
