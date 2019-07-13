@@ -5,10 +5,10 @@ import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
 const FILES = [
-  'https://s3.amazonaws.com/weekender-data/weekendstatus.js',
-  'https://s3.amazonaws.com/weekender-data/weekendroutestatus.js',
-  'https://s3.amazonaws.com/weekender-data/weekendboroughstatus.js',
-  'https://s3.amazonaws.com/weekender-data/LinesStaticData.js'
+  'https://weekender-data.s3.amazonaws.com/weekendstatus.js',
+  'https://weekender-data.s3.amazonaws.com/weekendroutestatus.js',
+  'https://weekender-data.s3.amazonaws.com/weekendboroughstatus.js',
+  'https://weekender-data.s3.amazonaws.com/LinesStaticData.js'
 ]
 
 if (!Number.parseInt) {
