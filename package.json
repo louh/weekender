@@ -25,7 +25,7 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-router-dom": "5.0.0",
-    "sanitize-html": "1.20.0"
+    "sanitize-html": "1.20.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-object-rest-spread": "7.4.3",
