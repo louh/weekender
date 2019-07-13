@@ -18,7 +18,7 @@
     "@babel/preset-env": "7.4.3",
     "@babel/preset-react": "7.0.0",
     "downshift": "3.2.10",
-    "leaflet": "1.4.0",
+    "leaflet": "1.5.1",
     "leaflet-rastercoords": "1.0.3",
     "mta-subway-bullets": "0.4.0",
     "parcel-bundler": "1.12.3",
