@@ -11,7 +11,6 @@ import './StationView.css'
 class StationView extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
   }
 
@@ -30,7 +29,7 @@ class StationView extends Component {
 
   renderInteractiveStatus = (statuses) => {
     return statuses.map(({ id, ...status }, i) => (
-      <ServiceNotice key={id} status={status} active={false} togglable={true} />
+      <ServiceNotice key={id} status={status} active={false} togglable />
     ))
   }
 
@@ -96,8 +95,8 @@ class StationView extends Component {
     /* global weekendstatus, statustext */
     const statuses = []
     for (let i = 0; i < weekendstatus.length; i++) {
-      const [ statusId , unused, station ] = weekendstatus[i].split(',')
-      if (station == stationId) {
+      const [statusId,, station] = weekendstatus[i].split(',')
+      if (station === stationId) {
         if (!statusId) continue
 
         const status = splitStatusText(statustext[statusId])

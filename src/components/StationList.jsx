@@ -46,11 +46,13 @@ export class StationList extends Component {
         </li>
       ))
 
-    if (list.length > 0) return (
-      <ul className="station-list" {...getMenuProps()}>
-        {list}
-      </ul>
-    )
+    if (list.length > 0) {
+      return (
+        <ul className="station-list" {...getMenuProps()}>
+          {list}
+        </ul>
+      )
+    }
 
     return <p className="station-list-empty"><strong>No stations found.</strong></p>
   }
@@ -72,11 +74,11 @@ export class StationList extends Component {
             getRootProps,
             inputValue,
             highlightedIndex,
-            selectedItem,
+            selectedItem
           }) => (
             // When an item is selected, render a <Redirect /> in order to navigate to that station
             // <Redirect /> needs to push a new history entry, not override the current one
-            selectedItem && <Redirect push to={`/station/${selectedItem.id}`} {...getRootProps({refKey: 'innerRef'})} />
+            selectedItem && <Redirect push to={`/station/${selectedItem.id}`} {...getRootProps({ refKey: 'innerRef' })} />
           ) || (
             // Otherwise, render the filter list.
             <div className="search-container">

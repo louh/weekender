@@ -8,7 +8,7 @@ export default class BoroughView extends Component {
       <Fragment>
         <h2>
           Borough
-          {/*<span className="heading-instructions">Select one</span>*/}
+          {/* <span className="heading-instructions">Select one</span> */}
         </h2>
         <hr />
         <ul className="borough-list">

@@ -24,7 +24,7 @@ class SettingsPanel extends Component {
                 checked={settings.FULL_UI}
                 onChange={(e) => settings.setSetting('FULL_UI', e.target.checked)}
               />
-              <span>Enable all navigation items</span> 
+              <span>Enable all navigation items</span>
             </label>
 
             <label htmlFor="settings-bullets-official-color">
@@ -34,7 +34,7 @@ class SettingsPanel extends Component {
                 checked={settings.SUBWAY_BULLET_OFFICIAL_COLORS}
                 onChange={(e) => settings.setSetting('SUBWAY_BULLET_OFFICIAL_COLORS', e.target.checked)}
               />
-              <span>Use official MTA colors for subway bullet icons</span> 
+              <span>Use official MTA colors for subway bullet icons</span>
             </label>
 
             <label htmlFor="settings-logo-legacy">
@@ -44,7 +44,7 @@ class SettingsPanel extends Component {
                 checked={settings.LOGO_LEGACY_TYPEFACE}
                 onChange={(e) => settings.setSetting('LOGO_LEGACY_TYPEFACE', e.target.checked)}
               />
-              <span>Use Vignelli typeface for Weekender workmark</span> 
+              <span>Use Vignelli typeface for Weekender workmark</span>
             </label>
 
             <p>

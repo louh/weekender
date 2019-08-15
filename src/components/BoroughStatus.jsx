@@ -7,9 +7,7 @@ import './BoroughStatus.css'
 
 class BoroughStatus extends Component {
   static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired
   }
 
   constructor (props) {
@@ -96,7 +94,7 @@ class BoroughStatus extends Component {
     const data = this.parseData(weekendboroughstatus)
     const statuses = this.getStatusesForBorough(borough, data)
 
-    return (  
+    return (
       <div className="borough-status-container">
         <div className="info-panel borough-status-selector">
           <h2>
@@ -114,13 +112,13 @@ class BoroughStatus extends Component {
         <div className="info-panel borough-status-details" key={borough}>
           <h2>Details</h2>
           <hr />
-          {borough && (this.state.active && (
+          {borough && ((this.state.active && (
             <ServiceNotice
               status={this.state.active}
-              active={true}
+              active
               togglable={false}
             />
-          ) || (
+          )) || (
             (statuses.length > 0) && <em style={{ fontWeight: 'normal', color: '#666' }}>Please select a status</em>
           ))}
         </div>

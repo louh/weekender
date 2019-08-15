@@ -8,9 +8,7 @@ import './LineView.css'
 
 export default class LineView extends Component {
   static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired
   }
 
   renderLanding () {
@@ -25,7 +23,7 @@ export default class LineView extends Component {
 
   renderInteractiveStatus = (statuses) => {
     return statuses.map(({ id, ...status }, i) => (
-      <ServiceNotice key={id} status={status} active={false} togglable={true} />
+      <ServiceNotice key={id} status={status} active={false} togglable />
     ))
   }
 
@@ -90,7 +88,7 @@ export default class LineView extends Component {
     /* global weekendroutestatus */
     const statuses = []
     for (let i = 0; i < weekendroutestatus.length; i++) {
-      const [ line, unused, statusText ] = weekendroutestatus[i].split('||')
+      const [line,, statusText] = weekendroutestatus[i].split('||')
       if (line.toUpperCase() === lineId.toUpperCase()) {
         const text = splitStatusText(statusText)
         statuses.push({ id: i, ...text })

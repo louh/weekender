@@ -8,15 +8,15 @@ describe('<Icon>', () => {
     const component = renderer.create(
       <Icon type="bus" />
     )
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()  
+    const tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
   })
 
   it('renders accessibility icon', () => {
     const component = renderer.create(
       <Icon type="isa" />
     )
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()  
+    const tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })

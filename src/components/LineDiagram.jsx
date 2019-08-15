@@ -1,3 +1,4 @@
+/* global stationMapCoordinates, stationRouteMapCoordinates, weekendstatus */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
@@ -34,37 +35,35 @@ import IMG_DOT_WHITE from '../images/dot_white.svg'
 import IMG_DOT_FLASHING from '../images/dot_flashing.svg'
 
 const paths = {
-  '1': IMG_LINE_DIAGRAM_1,
-  '2': IMG_LINE_DIAGRAM_2,
-  '3': IMG_LINE_DIAGRAM_3,
-  '4': IMG_LINE_DIAGRAM_4,
-  '5': IMG_LINE_DIAGRAM_5,
-  '6': IMG_LINE_DIAGRAM_6,
-  '7': IMG_LINE_DIAGRAM_7,
-  'A': IMG_LINE_DIAGRAM_A,
-  'C': IMG_LINE_DIAGRAM_C,
-  'E': IMG_LINE_DIAGRAM_E,
-  'L': IMG_LINE_DIAGRAM_L,
-  'S': IMG_LINE_DIAGRAM_S,
-  'B': IMG_LINE_DIAGRAM_B,
-  'D': IMG_LINE_DIAGRAM_D,
-  'F': IMG_LINE_DIAGRAM_F,
-  'M': IMG_LINE_DIAGRAM_M,
-  'N': IMG_LINE_DIAGRAM_N,
-  'Q': IMG_LINE_DIAGRAM_Q,
-  'R': IMG_LINE_DIAGRAM_R,
-  'W': IMG_LINE_DIAGRAM_W,
-  'J': IMG_LINE_DIAGRAM_J,
-  'Z': IMG_LINE_DIAGRAM_Z,
-  'G': IMG_LINE_DIAGRAM_G,
-  'SIR': IMG_LINE_DIAGRAM_SIR,
+  1: IMG_LINE_DIAGRAM_1,
+  2: IMG_LINE_DIAGRAM_2,
+  3: IMG_LINE_DIAGRAM_3,
+  4: IMG_LINE_DIAGRAM_4,
+  5: IMG_LINE_DIAGRAM_5,
+  6: IMG_LINE_DIAGRAM_6,
+  7: IMG_LINE_DIAGRAM_7,
+  A: IMG_LINE_DIAGRAM_A,
+  C: IMG_LINE_DIAGRAM_C,
+  E: IMG_LINE_DIAGRAM_E,
+  L: IMG_LINE_DIAGRAM_L,
+  S: IMG_LINE_DIAGRAM_S,
+  B: IMG_LINE_DIAGRAM_B,
+  D: IMG_LINE_DIAGRAM_D,
+  F: IMG_LINE_DIAGRAM_F,
+  M: IMG_LINE_DIAGRAM_M,
+  N: IMG_LINE_DIAGRAM_N,
+  Q: IMG_LINE_DIAGRAM_Q,
+  R: IMG_LINE_DIAGRAM_R,
+  W: IMG_LINE_DIAGRAM_W,
+  J: IMG_LINE_DIAGRAM_J,
+  Z: IMG_LINE_DIAGRAM_Z,
+  G: IMG_LINE_DIAGRAM_G,
+  SIR: IMG_LINE_DIAGRAM_SIR
 }
 
 export default class LineDiagram extends Component {
   static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired
   }
 
   constructor (props) {
@@ -111,8 +110,8 @@ export default class LineDiagram extends Component {
         break
     }
 
-    const xLeftPoint = imgxLeftPoint + divLeftOffsetPoint - 330 + 'px'
-    const yTopPoint = imgyTopPoint + divTopOffSetPoint + 'px'
+    let xLeftPoint = imgxLeftPoint + divLeftOffsetPoint - 330 + 'px'
+    let yTopPoint = imgyTopPoint + divTopOffSetPoint + 'px'
 
     // Exceptions: override x, y, and width
     if (alignment === 'E') {
@@ -120,7 +119,7 @@ export default class LineDiagram extends Component {
       xLeftPoint = '850px'
       width = '100px'
     }
-    
+
     this.setState({
       stationLabel: stationName,
       stationLabelStyle: {
@@ -177,7 +176,7 @@ export default class LineDiagram extends Component {
       const xLeftPoint = Number.parseInt(lineData.split(',')[0] * (630 / 3410) - 4) + 'px'
       const yTopPoint = Number.parseInt(lineData.split(',')[1] * (630 / 3410) - 4) + 'px'
       const ctrlID = lineIndex + '_' + route + 'l'
-      let iconCategory = lineData.split(',')[4]
+      const iconCategory = lineData.split(',')[4]
 
       // Default values (iconCategory === 'B')
       let name = 'normal'

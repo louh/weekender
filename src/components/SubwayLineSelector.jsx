@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import SubwayBullet from './SubwayBullet'
 import './SubwayLineSelector.css'
@@ -7,10 +6,6 @@ import './SubwayLineSelector.css'
 const SUBWAY_LINES = ['1', '2', '3', '4', '5', '6', '7', 'A', 'C', 'E', 'L', 'S', 'B', 'D', 'F', 'M', 'N', 'Q', 'R', 'W', 'J', 'Z', 'G', 'SIR']
 
 export default class SubwayLineSelector extends Component {
-  static propTypes = {
-    onClick: PropTypes.func
-  }
-
   renderBullets () {
     return SUBWAY_LINES.map((line) => (
       <li key={line}>
@@ -27,7 +22,7 @@ export default class SubwayLineSelector extends Component {
         <ul className="subway-lines">
           {this.renderBullets()}
         </ul>
-        <div style={{ clear: 'both' }}></div>
+        <div style={{ clear: 'both' }} />
       </React.Fragment>
     )
   }

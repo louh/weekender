@@ -73,7 +73,7 @@ const Legend = (props) => (
                 {({ toggleSettingsScreen }) => (
                   <div
                     className="easter-egg-trigger"
-                    aria-hidden={true}
+                    aria-hidden
                     onClick={toggleSettingsScreen}
                   />
                 )}
@@ -122,7 +122,7 @@ const Legend = (props) => (
         <tbody>
           <tr>
             <td>
-              <img 
+              <img
                 src={LEGEND_EXPRESS_LABEL}
                 width={44}
                 height={10}
