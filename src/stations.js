@@ -15,7 +15,7 @@ function cleanUpStationLabel (label) {
 
 const STATIONS_LIST = masterArray.map((item) => {
   const station = item.split(':')
-  const [ label, id, bullets ] = station
+  const [label, id, bullets] = station
   const numericalId = Number.parseInt(id, 10)
   return {
     id: numericalId,

@@ -1,3 +1,4 @@
+/* eslint-disable */
 var weekendstatus = new Array();
 weekendstatus[0]="174251,D,10457,1705,3036,N,";
 weekendstatus[1]="174251,N,10179,1738,3047,N,";

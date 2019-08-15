@@ -1,3 +1,4 @@
+/* global weekendstatus */
 import L from 'leaflet'
 import 'leaflet-rastercoords'
 
@@ -5,7 +6,7 @@ const TILES = '/tiles/{z}/{x}/{y}.png'
 const TILES_RETINA = '/tiles/{z}/{x}/{y}@2x.png'
 const RASTER_IMAGE_SIZE = [
   8192, // original width of image
-  8192  // original height of image
+  8192 // original height of image
 ]
 const INITIAL_VIEW = {
   lat: 33.57458,
@@ -32,23 +33,23 @@ export function initMap (history) {
       maxBounds: L.latLngBounds(L.latLng(85.03100, -179.756927), L.latLng(-75.758940, 119.53125)),
       maxBoundsViscosity: 0.5
     })
-  
+
     L.tileLayer(window.devicePixelRatio > 1 ? TILES_RETINA : TILES, {
       attribution: false,
       maxZoom: 5,
       minZoom: 1,
       noWrap: true
     }).addTo(map)
-  
+
     // Proof of concept markers
     // Use leaflet-rastercoords to convert pixel coordinates to map coordinates
     rc = new L.RasterCoords(map, RASTER_IMAGE_SIZE)
     const allMarkers = drawMarkers(map, rc, history)
-  
-    map.on('zoomend', function() {
+
+    map.on('zoomend', function () {
       const currentZoom = map.getZoom()
       const radius = getMarkerRadiusForZoom(currentZoom)
-  
+
       // Resize the marker based on zoom level
       allMarkers.forEach((marker) => {
         marker.setRadius(radius)
@@ -99,8 +100,8 @@ function drawMarkers (map, rc, history) {
   const stations = Object.entries(stationRouteMapCoordinates)
 
   return stations.map((data) => {
-    const [ id, coords ] = data
-    const [ stationId, lineId ] = id.split('_')
+    const [id, coords] = data
+    const [stationId, lineId] = id.split('_')
     const coordData = coords.split(',')
     const isGrayedOut = coordData[4] === 'LG'
     let x = Number.parseInt(coordData[0], 10)

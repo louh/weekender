@@ -10,7 +10,7 @@ import './Header.css'
 const Header = (props) => (
   <header>
     <div className="header-title">
-      <div className="header-white-line"></div>
+      <div className="header-white-line" />
       <h1><Link to="/">The Weekender</Link></h1>
       <SettingsContext.Consumer>
         {({ LOGO_LEGACY_TYPEFACE }) => (

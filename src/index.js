@@ -34,7 +34,7 @@ Promise.all(FILES.map(embedScript)).then(() => {
     <Router>
       <App />
     </Router>
-  , mountNode)
+    , mountNode)
 })
 
 // The service worker code comes from create-react-app.

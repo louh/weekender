@@ -10,7 +10,7 @@ import './ServiceNotice.css'
  * Given a string with bracket notation placeholders, e.g.
  *  "This is a {{string}}"
  * The bracket is replaced with a component and its contents are passed to the component
- * @param {string} string 
+ * @param {string} string
  */
 function replaceStringWithReactComponent (string) {
   // Returns as-is if not a string
@@ -30,7 +30,7 @@ function replaceStringWithReactComponent (string) {
         // Link must stop propagation to prevent parent onClick handler from preventing navigation.
         return <a href={link} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.stopPropagation() }} key={i * 10}>{text}</a>
       } else if (line.startsWith('station')) {
-        const [unused, id, ...text] = line.split(' ')
+        const [, id, ...text] = line.split(' ')
         return <Link to={`/station/${id}`} key={i * 10}>{text.join(' ')}</Link>
       }
 
@@ -62,10 +62,10 @@ function transformStatusSummary (text) {
   // Note this actually encodes & as &amp;, and decodes &bull; to •
   // so we have to address that later.
   text = sanitizeHtml(text, {
-    allowedTags: [ 'img' ],
+    allowedTags: ['img'],
     allowedAttributes: {
       // 'a': [ 'href' ],
-      'img': [ 'src' ]
+      img: ['src']
     }
   })
 
@@ -218,7 +218,7 @@ export default class ServiceNotice extends Component {
   render () {
     const { status, active } = this.props
     const { isActive } = this.state
-    
+
     const classNames = ['service-notice']
     if (isActive || active) {
       classNames.push('service-notice-active')
