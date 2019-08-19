@@ -88,7 +88,7 @@ export default class LineView extends Component {
     /* global weekendroutestatus */
     const statuses = []
     for (let i = 0; i < weekendroutestatus.length; i++) {
-      const [line,, statusText] = weekendroutestatus[i].split('||')
+      const [line, , statusText] = weekendroutestatus[i].split('||')
       if (line.toUpperCase() === lineId.toUpperCase()) {
         const text = splitStatusText(statusText)
         statuses.push({ id: i, ...text })

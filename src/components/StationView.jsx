@@ -95,8 +95,8 @@ class StationView extends Component {
     /* global weekendstatus, statustext */
     const statuses = []
     for (let i = 0; i < weekendstatus.length; i++) {
-      const [statusId,, station] = weekendstatus[i].split(',')
-      if (station === stationId) {
+      const [statusId, , station] = weekendstatus[i].split(',')
+      if (Number.parseInt(station, 10) === stationId) {
         if (!statusId) continue
 
         const status = splitStatusText(statustext[statusId])
