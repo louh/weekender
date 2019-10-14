@@ -29,7 +29,7 @@
     "sanitize-html": "1.20.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-object-rest-spread": "7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "7.6.2",
     "@testing-library/react": "9.3.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.3",
