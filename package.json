@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "7.5.5",
-    "@babel/preset-env": "7.6.3",
+    "@babel/preset-env": "7.8.7",
     "@babel/preset-react": "7.8.3",
     "downshift": "4.0.8",
     "leaflet": "1.5.1",
