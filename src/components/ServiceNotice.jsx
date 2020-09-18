@@ -64,7 +64,7 @@ function transformStatusSummary (text) {
   text = sanitizeHtml(text, {
     allowedTags: ['img'],
     allowedAttributes: {
-      // 'a': [ 'href' ],
+      // a: ['href'],
       img: ['src']
     }
   })
@@ -227,17 +227,26 @@ export default class ServiceNotice extends Component {
       classNames.push('service-notice-interactive')
     }
 
+    // If there there are no details, move the summary to
+    // details section. This is to work around a situation where
+    // summary is used to include links and image bullets in the absence of
+    // details.
+    const summary = (!status.details) ? null : status.summary
+    const details = (!status.details) ? status.summary : status.details
+
     return (
       <article
         className={classNames.join(' ')}
         onClick={this.handleClick}
       >
-        <div>
-          {transformStatusSummary(status.summary)}
-        </div>
+        {summary && (
+          <div>
+            {transformStatusSummary(summary)}
+          </div>
+        )}
 
         <div className="service-notice-details">
-          {transformStatusDetail(status.details)}
+          {transformStatusDetail(details)}
         </div>
       </article>
     )
