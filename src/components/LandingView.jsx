@@ -19,6 +19,11 @@ export default class LandingView extends Component {
           <p>This is not an official production of the MTA. This is a fan-made high-definition remaster of <a href="http://web.mta.info/weekender.html" target="_blank" rel="noopener noferrer">the original Weekender</a>.</p>
 
           <p><strong>This project is a work in progress.</strong> <a href="https://github.com/louh/weekender">Check out the code here.</a></p>
+
+          <div className="landing-notice">
+          🚨 <strong>DEPRECATION NOTICE</strong> 🚨: <br/><br/>
+          In October 2020, the MTA released its new <a href="https://map.mta.info/">Live Subway Map</a> (<a href="https://www.curbed.com/2020/10/first-look-new-yorks-digital-subway-map-comes-alive-today.html">read more about it</a>) which replaces the original Weekender. As of November 2020, the Weekender no longer received status updates. <strong>As a result, this proof of concept will similarly no longer be updated, and will be archived.</strong> It was fun while it lasted! 😇
+          </div>
         </section>
       </Fragment>
     )
