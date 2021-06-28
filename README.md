@@ -2,6 +2,8 @@
 
 Unofficial proof-of-concept modern update for MTA's Weekender. http://web.mta.info/weekender/
 
+🚨 **DEPRECATION NOTICE** 🚨: In October 2020, the MTA released its new [Live Subway Map](https://map.mta.info/) ([read more about it](https://www.curbed.com/2020/10/first-look-new-yorks-digital-subway-map-comes-alive-today.html)) which replaces the Weekender. As of November 2020, the original Weekender no longer received status updates. **As a result, this proof of concept will similarly no longer be updated, and will be archived.** It was fun while it lasted! 😇
+
 ## Background
 
 [Why New Yorkers Insisted On a "Worse" Subway Map - Cheddar Explains (YouTube)](https://www.youtube.com/watch?v=OdDsV19DBCU)
