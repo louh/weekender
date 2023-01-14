@@ -59,7 +59,9 @@ export default class Footer extends React.Component {
           <NavLink to="/legend" activeClassName="nav-active">Legend</NavLink>
         </div>
         <div className="footer-middle">
-          {this.renderWeekendDates()}
+          {/* Freeze dates to frozen dataset from just before service was shut down */}
+          13 November  –  16 November 2020
+          {/* {this.renderWeekendDates()} */}
         </div>
         <SettingsContext.Consumer>
           {({ FULL_UI }) => (
