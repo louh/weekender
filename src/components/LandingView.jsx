@@ -20,9 +20,9 @@ export default class LandingView extends Component {
 
           <div className="landing-notice">
           🚨 <strong>DEPRECATION NOTICE</strong> 🚨
-          <p>In October 2020, the MTA released its new <a href="https://map.mta.info/">Live Subway Map</a> (<a href="https://www.curbed.com/2020/10/first-look-new-yorks-digital-subway-map-comes-alive-today.html">read more about it</a>) which replaces the original Weekender. As of November 2020, the Weekender no longer received status updates. <strong>As a result, this proof of concept will similarly no longer be updated, and will be archived.</strong> It was fun while it lasted! 😇</p>
+          <p>In October 2020, the MTA released its new <a href="https://map.mta.info/" target="_blank" rel="noopener noferrer">Live Subway Map</a> (<a href="https://www.curbed.com/2020/10/first-look-new-yorks-digital-subway-map-comes-alive-today.html" target="_blank" rel="noopener noferrer">read more about it</a>) which replaces the original Weekender. As of November 2020, the Weekender no longer received status updates. <strong>As a result, this proof of concept will similarly no longer be updated, and will be archived.</strong> It was fun while it lasted! 😇</p>
 
-          <p><a href="https://github.com/louh/weekender">You can check out the code here.</a></p>
+          <p><a href="https://github.com/louh/weekender" target="_blank" rel="noopener noferrer">You can check out the code here.</a></p>
           </div>
         </section>
       </Fragment>
